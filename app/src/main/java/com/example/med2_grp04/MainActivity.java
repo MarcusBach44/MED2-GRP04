@@ -1,9 +1,6 @@
 package com.example.med2_grp04;
 
-import static android.content.Intent.FLAG_ACTIVITY_REORDER_TO_FRONT;
-
 import android.content.Intent;
-import android.location.SettingInjectorService;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -17,7 +14,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.lang.ref.WeakReference;
+
 public class MainActivity extends AppCompatActivity {
+    public boolean isOverlayActive = true;
+    private static WeakReference<Window> overlay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -37,8 +39,22 @@ public class MainActivity extends AppCompatActivity {
         CheckOverlayPermission();
         StartService();
 
+        findViewById(R.id.DisableButton).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                isOverlayActive = !isOverlayActive;
+                if (isOverlayActive){
+                    overlay.get().Open();
+                } else{
+                    overlay.get().Close();
+                }
+            }
+        });
     }
 
+    public static void updateOverlayWindow(Window window){
+        overlay = new WeakReference<>(window);
+    }
     public void CheckOverlayPermission(){
         if (!Settings.canDrawOverlays(this)){
             Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
@@ -59,14 +75,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
     public boolean onSupportNavigateUp() {
         Toast.makeText(this, "FUCK", Toast.LENGTH_SHORT).show();
         return super.onSupportNavigateUp();
     }
-
 }
