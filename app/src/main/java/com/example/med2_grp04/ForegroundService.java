@@ -3,15 +3,28 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.Service;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.os.IBinder;
+import android.util.Log;
+
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
 public class ForegroundService extends Service {
+    private Window window;
+    private String[] restrictedApps = {
+            "com.example.med2_grp04",
+            "com.android.systemui",
+            "com.reddit.frontpage",
+            "com.google.android.youtube",
+            "com.instagram.android",
+            "com.zhiliaoapp.musically"
+    };
     public ForegroundService() {
     }
     @Nullable @Override
@@ -22,22 +35,63 @@ public class ForegroundService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        IntentFilter filter = new IntentFilter("APP_CHANGED");
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            registerReceiver(receiver, filter, RECEIVER_EXPORTED);
+            Log.d("RECEIVER", "Open");
+        }
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             StartMyOwnForeground();
         }else{
             startForeground(1, new Notification());
         }
-        Window window = new Window(this);
-        window.Open();
+        window = new Window(this);
+        //window.Open();
 
         MainActivity.updateOverlayWindow(window);
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(receiver);
+    }
+
+    private BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String pkg = intent.getStringExtra("package");
+            Log.d("RECEIVED", "Package Received " +pkg);
+
+            if (pkg == null || !MainActivity.isOverlayActive) {
+                return;
+            }
+
+            if (isRestricted(pkg)){
+                Log.d("RESTRICTED", "Show Overlay");
+                window.Open();
+            } else {
+                Log.d("NOT RESTRICTED", "Hide Overlay");
+                window.Close();
+            }
+        }
+    };
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         return super.onStartCommand(intent, flags, startId);
     }
 
+    private boolean isRestricted(String pkg){
+        for (String app : restrictedApps) {
+            if (app.equals(pkg)) {
+                return true;
+            }
+        }
+        return false;
+    }
     @RequiresApi(Build.VERSION_CODES.O)
     private void StartMyOwnForeground(){
         String NOTIFICATION_CHANNEL_ID = "example.permanence";

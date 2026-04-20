@@ -17,7 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 import java.lang.ref.WeakReference;
 
 public class MainActivity extends AppCompatActivity {
-    public boolean isOverlayActive = true;
+    public static boolean isOverlayActive = false;
     private static WeakReference<Window> overlay;
 
     @Override
@@ -33,10 +33,11 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         CheckOverlayPermission();
+        CheckAccessibiltyPermission();
         StartService();
 
         findViewById(R.id.DisableButton).setOnClickListener(new View.OnClickListener(){
@@ -60,6 +61,11 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
             startActivity(intent);
         }
+    }
+
+    public void CheckAccessibiltyPermission(){
+        Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
+        startActivity(intent);
     }
 
     public void StartService(){
