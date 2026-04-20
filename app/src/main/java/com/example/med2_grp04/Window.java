@@ -35,7 +35,6 @@ public class Window {
                     WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                     //WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
                     PixelFormat.TRANSLUCENT
-
             );
         }
 

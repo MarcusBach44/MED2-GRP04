@@ -19,7 +19,6 @@ public class ForegroundService extends Service {
     private Window window;
     private String[] restrictedApps = {
             "com.example.med2_grp04",
-            "com.android.systemui",
             "com.reddit.frontpage",
             "com.google.android.youtube",
             "com.instagram.android",
