@@ -1,19 +1,18 @@
 package com.example.med2_grp04;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Toast;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
 import java.lang.ref.WeakReference;
 
 public class MainActivity extends AppCompatActivity {
@@ -37,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         //getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         CheckOverlayPermission();
-        CheckAccessibiltyPermission();
+        CheckAccessibilityPermission();
         StartService();
 
         findViewById(R.id.DisableButton).setOnClickListener(new View.OnClickListener(){
@@ -63,9 +62,38 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void CheckAccessibiltyPermission(){
+    public void CheckAccessibilityPermission(){
+        if (isAccessibilityEnabled(this)){
+            return;
+        }
         Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
         startActivity(intent);
+    }
+
+    public boolean isAccessibilityEnabled(Context context) {
+        String service = context.getPackageName() + "/" + DetectAppChanges.class.getCanonicalName();
+
+        int enabled = 0;
+        try {
+            enabled = Settings.Secure.getInt(
+                    context.getContentResolver(),
+                    Settings.Secure.ACCESSIBILITY_ENABLED
+            );
+        } catch (Settings.SettingNotFoundException e) {
+            return false;
+        }
+
+        if (enabled == 1) {
+            String settingValue = Settings.Secure.getString(
+                    context.getContentResolver(),
+                    Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES
+            );
+
+            if (settingValue != null && settingValue.contains(service)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void StartService(){

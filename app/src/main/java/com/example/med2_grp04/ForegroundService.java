@@ -10,7 +10,6 @@ import android.content.IntentFilter;
 import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
-
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
@@ -47,8 +46,6 @@ public class ForegroundService extends Service {
             startForeground(1, new Notification());
         }
         window = new Window(this);
-        //window.Open();
-
         MainActivity.updateOverlayWindow(window);
     }
 
@@ -77,6 +74,8 @@ public class ForegroundService extends Service {
             }
         }
     };
+
+
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
