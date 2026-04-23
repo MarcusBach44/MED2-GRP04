@@ -30,16 +30,11 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //getSupportActionBar().setDisplayShowHomeEnabled(true);
-
         CheckOverlayPermission();
         CheckAccessibilityPermission();
         StartService();
 
-        findViewById(R.id.DisableButton).setOnClickListener(new View.OnClickListener(){
+        findViewById(R.id.btnBrainBreak).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 isOverlayActive = !isOverlayActive;
