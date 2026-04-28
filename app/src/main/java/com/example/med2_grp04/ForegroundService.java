@@ -67,10 +67,12 @@ public class ForegroundService extends Service {
 
             if (isRestricted(pkg)){
                 Log.d("RESTRICTED", "Show Overlay");
-                window.Open();
+                MainActivity.OpenOverlay();
+                //window.Open();
             } else {
                 Log.d("NOT RESTRICTED", "Hide Overlay");
-                window.Close();
+                MainActivity.CloseOverlay();
+                //window.Close();
             }
         }
     };

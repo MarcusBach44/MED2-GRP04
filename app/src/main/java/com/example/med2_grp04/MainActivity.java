@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
             throw new RuntimeException(e);
         }
 
-        ImageView im = (ImageView) overlay.get().mView.findViewById(R.id.ink_overlay);
-        im.setImageDrawable(inkOverlayGif);
+        //ImageView im = (ImageView) overlay.get().mView.findViewById(R.id.ink_overlay);
+        //im.setImageDrawable(inkOverlayGif);
         inkOverlayGif.reset();
         inkOverlayReverseGif.seekToFrame(47);
 
@@ -59,23 +59,31 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 isOverlayActive = !isOverlayActive;
                 if (isOverlayActive){
-                    inkOverlayReverseGif.pause();
-                    im.setImageDrawable(inkOverlayGif);
-                    inkOverlayGif.seekToFrame((inkOverlayReverseGif.getCurrentFrameIndex()-48)*-1);
-                    inkOverlayGif.setSpeed(0.05f);
-                    inkOverlayGif.start();
-                    overlay.get().Open();
+                    OpenOverlay();
                 } else{
-                    inkOverlayGif.pause();
-                    im.setImageDrawable(inkOverlayReverseGif);
-                    inkOverlayReverseGif.seekToFrame((inkOverlayGif.getCurrentFrameIndex()-48)*-1);
-                    inkOverlayReverseGif.setSpeed(0.05f);
-                    inkOverlayReverseGif.start();
-                    overlay.get().Close();
-
+                    CloseOverlay();
                 }
             }
         });
+    }
+
+    public static void OpenOverlay(){
+        inkOverlayReverseGif.pause();
+        ImageView im = (ImageView) overlay.get().mView.findViewById(R.id.ink_overlay);
+        im.setImageDrawable(inkOverlayGif);
+        inkOverlayGif.seekToFrame((inkOverlayReverseGif.getCurrentFrameIndex()-48)*-1);
+        inkOverlayGif.setSpeed(0.05f);
+        inkOverlayGif.start();
+        overlay.get().Open();
+    }
+    public static void CloseOverlay(){
+        inkOverlayGif.pause();
+        ImageView im = (ImageView) overlay.get().mView.findViewById(R.id.ink_overlay);
+        im.setImageDrawable(inkOverlayReverseGif);
+        inkOverlayReverseGif.seekToFrame((inkOverlayGif.getCurrentFrameIndex()-48)*-1);
+        inkOverlayReverseGif.setSpeed(0.05f);
+        inkOverlayReverseGif.start();
+        overlay.get().Close();
     }
 
     public static void updateOverlayWindow(Window window){
