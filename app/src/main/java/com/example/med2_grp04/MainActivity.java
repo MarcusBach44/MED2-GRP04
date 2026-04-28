@@ -6,18 +6,22 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import java.io.IOException;
 import java.lang.ref.WeakReference;
+import pl.droidsonroids.gif.GifDrawable;
 
 public class MainActivity extends AppCompatActivity {
     public static boolean isOverlayActive = false;
     private static WeakReference<Window> overlay;
+    public static GifDrawable inkOverlayGif;
+    public static GifDrawable inkOverlayReverseGif;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,21 +34,54 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+
         CheckOverlayPermission();
         CheckAccessibilityPermission();
         StartService();
 
+        try {
+            inkOverlayGif = new GifDrawable(getResources(), R.drawable.ink_screen_overlay);
+            inkOverlayReverseGif = new GifDrawable(getResources(), R.drawable.ink_screen_overlay_reverse);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        //ImageView im = (ImageView) overlay.get().mView.findViewById(R.id.ink_overlay);
+        //im.setImageDrawable(inkOverlayGif);
+        inkOverlayGif.reset();
+        inkOverlayReverseGif.seekToFrame(47);
+
+        findViewById(R.id.DisableButton).setOnClickListener(new View.OnClickListener(){
         findViewById(R.id.btnBrainBreak).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 isOverlayActive = !isOverlayActive;
                 if (isOverlayActive){
-                    overlay.get().Open();
+                    OpenOverlay();
                 } else{
-                    overlay.get().Close();
+                    CloseOverlay();
                 }
             }
         });
+    }
+
+    public static void OpenOverlay(){
+        inkOverlayReverseGif.pause();
+        ImageView im = (ImageView) overlay.get().mView.findViewById(R.id.ink_overlay);
+        im.setImageDrawable(inkOverlayGif);
+        inkOverlayGif.seekToFrame((inkOverlayReverseGif.getCurrentFrameIndex()-48)*-1);
+        inkOverlayGif.setSpeed(0.05f);
+        inkOverlayGif.start();
+        overlay.get().Open();
+    }
+    public static void CloseOverlay(){
+        inkOverlayGif.pause();
+        ImageView im = (ImageView) overlay.get().mView.findViewById(R.id.ink_overlay);
+        im.setImageDrawable(inkOverlayReverseGif);
+        inkOverlayReverseGif.seekToFrame((inkOverlayGif.getCurrentFrameIndex()-48)*-1);
+        inkOverlayReverseGif.setSpeed(0.05f);
+        inkOverlayReverseGif.start();
+        overlay.get().Close();
     }
 
     public static void updateOverlayWindow(Window window){
