@@ -45,14 +45,11 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        //ImageView im = (ImageView) overlay.get().mView.findViewById(R.id.ink_overlay);
-        //im.setImageDrawable(inkOverlayGif);
+        
         inkOverlayGif.reset();
         inkOverlayReverseGif.seekToFrame(47);
 
         findViewById(R.id.DisableButton).setOnClickListener(new View.OnClickListener(){
-        findViewById(R.id.btnBrainBreak).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 isOverlayActive = !isOverlayActive;
