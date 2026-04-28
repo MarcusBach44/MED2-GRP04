@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         inkOverlayReverseGif.seekToFrame(47);
 
         findViewById(R.id.DisableButton).setOnClickListener(new View.OnClickListener(){
+        findViewById(R.id.btnBrainBreak).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 isOverlayActive = !isOverlayActive;
