@@ -45,9 +45,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        //ImageView im = (ImageView) overlay.get().mView.findViewById(R.id.ink_overlay);
-        //im.setImageDrawable(inkOverlayGif);
+        
         inkOverlayGif.reset();
         inkOverlayReverseGif.seekToFrame(47);
 
