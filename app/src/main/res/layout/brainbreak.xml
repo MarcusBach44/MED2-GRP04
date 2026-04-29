@@ -5,17 +5,54 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/materialToolbar"
-        android:layout_width="416dp"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="414dp"
         android:layout_height="60dp"
-        android:background="?attr/colorPrimary"
+        android:background="@color/lightgrey"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:text="Brain Breaks"
-        app:TextColor="@color/black"/>
+        />
+
+        <TextView
+        android:id="@+id/BrainBreak"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/black_han_sans"
+        android:gravity="center"
+        android:text="Brain Breaks"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnTicTacToe"
+        android:layout_width="128dp"
+        android:layout_height="121dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="136dp"
+        android:backgroundTint="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_dialog_map"
+        android:contentDescription="TicTacToe button"/>
+
+    <TextView
+        android:id="@+id/TicTacToe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:text="TicTacToe"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnTicTacToe" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
