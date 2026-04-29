@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +19,7 @@ import java.lang.ref.WeakReference;
 public class MainActivity extends AppCompatActivity {
     public static boolean isOverlayActive = false;
     private static WeakReference<Window> overlay;
-
+Button ToSettings_options;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,12 +29,19 @@ public class MainActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
-        });
+            });
+        ToSettings_options=(Button)findViewById(R.id.ToSettings_options);
+        ToSettings_options.setOnClickListener((v1 -> {
+            startActivity(new Intent(MainActivity.this,Settings_Options.class));
+
+        }));
+
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //getSupportActionBar().setDisplayShowHomeEnabled(true);
+
 
         CheckOverlayPermission();
         CheckAccessibilityPermission();
@@ -48,7 +56,9 @@ public class MainActivity extends AppCompatActivity {
                 } else{
                     overlay.get().Close();
                 }
+
             }
+
         });
     }
 
@@ -113,4 +123,5 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "FUCK", Toast.LENGTH_SHORT).show();
         return super.onSupportNavigateUp();
     }
+
 }
