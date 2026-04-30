@@ -46,7 +46,7 @@ public class ForegroundService extends Service {
             startForeground(1, new Notification());
         }
         window = new Window(this);
-        MainActivity.updateOverlayWindow(window);
+        OverlayManager.updateOverlayWindow(window);
     }
 
     @Override
@@ -67,15 +67,13 @@ public class ForegroundService extends Service {
 
             if (isRestricted(pkg)){
                 Log.d("RESTRICTED", "Show Overlay");
-                MainActivity.OpenOverlay();
+                OverlayManager.OpenOverlay();
             } else {
                 Log.d("NOT RESTRICTED", "Hide Overlay");
-                MainActivity.CloseOverlay();
+                OverlayManager.CloseOverlay();
             }
         }
     };
-
-
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -90,6 +88,7 @@ public class ForegroundService extends Service {
         }
         return false;
     }
+
     @RequiresApi(Build.VERSION_CODES.O)
     private void StartMyOwnForeground(){
         String NOTIFICATION_CHANNEL_ID = "example.permanence";
