@@ -1,5 +1,8 @@
 package com.example.med2_grp04;
 
+import static android.content.Intent.FLAG_ACTIVITY_REORDER_TO_FRONT;
+
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -55,6 +58,19 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        findViewById(R.id.btnSettings).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Change();
+            }
+        });
+    }
+
+
+    public void Change(){
+        Intent intent = new Intent(this, SettingsRestrictedApps.class);
+        intent.setFlags(FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(intent);
     }
 
 
