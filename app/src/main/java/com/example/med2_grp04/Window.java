@@ -13,35 +13,22 @@ import android.view.WindowManager;
 
 public class Window {
     public Context context;
-    private View mView;
+    public View mView;
     private WindowManager.LayoutParams mParams;
     private WindowManager mWindowManager;
     private LayoutInflater layoutInflater;
-
     public Window(Context context){
         this.context=context;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             mParams = new WindowManager.LayoutParams(
-                    WindowManager.LayoutParams.WRAP_CONTENT,
-                    WindowManager.LayoutParams.WRAP_CONTENT,
                     WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
-                    //WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-                    WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+                    WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                     PixelFormat.TRANSLUCENT
             );
         }
 
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mView = layoutInflater.inflate(R.layout.popup_window,null);
-        mView.findViewById(R.id.window_close).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (Helper.getCurrentForeground(context).equals(Helper.getDefaultLauncherPackage(context))){
-                    Log.d("DETECT HOMESCREEN", "TRUE");
-                }
-            }
-        });
-
         mParams.gravity = Gravity.CENTER;
         mWindowManager = (WindowManager) context.getSystemService(WINDOW_SERVICE);
     }

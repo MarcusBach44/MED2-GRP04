@@ -12,15 +12,14 @@ import android.view.View;
 import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import java.lang.ref.WeakReference;
+import java.io.IOException;
+import pl.droidsonroids.gif.GifDrawable;
 
 public class MainActivity extends AppCompatActivity {
     public static boolean isOverlayActive = false;
-    private static WeakReference<Window> overlay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,14 +36,25 @@ public class MainActivity extends AppCompatActivity {
         CheckAccessibilityPermission();
         StartService();
 
-        findViewById(R.id.btnBrainBreak).setOnClickListener(new View.OnClickListener(){
+        try {
+            OverlayManager.inkOverlayGif = new GifDrawable(getResources(), R.drawable.ink_screen_overlay);
+            OverlayManager.inkOverlayGif.reset();
+
+            OverlayManager.inkOverlayReverseGif = new GifDrawable(getResources(), R.drawable.ink_screen_overlay_reverse);
+            OverlayManager.inkOverlayReverseGif.seekToFrame(47);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        findViewById(R.id.btnSwitch).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 isOverlayActive = !isOverlayActive;
                 if (isOverlayActive){
-                    overlay.get().Open();
+                    OverlayManager.OpenOverlay();
                 } else{
-                    overlay.get().Close();
+                    OverlayManager.CloseOverlay();
                 }
             }
         });
@@ -63,9 +73,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public static void updateOverlayWindow(Window window){
-        overlay = new WeakReference<>(window);
-    }
+
+
+
     public void CheckOverlayPermission(){
         if (!Settings.canDrawOverlays(this)){
             Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
