@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class TicTacToe extends AppCompatActivity {
 
-    
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
