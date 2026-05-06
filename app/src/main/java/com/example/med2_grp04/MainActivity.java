@@ -52,9 +52,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 isOverlayActive = !isOverlayActive;
                 if (isOverlayActive){
-                    OverlayManager.OpenOverlay();
+                    OverlayManager.OpenInkOverlay();
                 } else{
-                    OverlayManager.CloseOverlay();
+                    OverlayManager.CloseInkOverlay();
                 }
             }
         });

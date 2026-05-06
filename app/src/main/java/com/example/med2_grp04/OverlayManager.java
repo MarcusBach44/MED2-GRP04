@@ -9,29 +9,30 @@ import androidx.appcompat.app.AppCompatActivity;
 public class OverlayManager extends AppCompatActivity {
     public static GifDrawable inkOverlayGif;
     public static GifDrawable inkOverlayReverseGif;
-    public static float spreadSpeed = 0.05f;
-    private static WeakReference<Window> overlay;
+    public static float inkSpreadSpeed = 0.05f;
+    public static float inkSpreadDecay = 0.05f;
+    private static WeakReference<InkOverlayWindow> inkOverlay;
 
-    public static void updateOverlayWindow(Window window){
-        overlay = new WeakReference<>(window);
+    public static void updateInkOverlayWindow(InkOverlayWindow window){
+        inkOverlay = new WeakReference<>(window);
     }
 
-    public static void OpenOverlay(){
+    public static void OpenInkOverlay(){
         inkOverlayReverseGif.pause();
-        ImageView im = (ImageView) overlay.get().mView.findViewById(R.id.ink_overlay);
+        ImageView im = (ImageView) inkOverlay.get().mView.findViewById(R.id.ink_overlay);
         im.setImageDrawable(inkOverlayGif);
         inkOverlayGif.seekToFrame((inkOverlayReverseGif.getCurrentFrameIndex()-48)*-1);
-        inkOverlayGif.setSpeed(spreadSpeed);
+        inkOverlayGif.setSpeed(inkSpreadSpeed);
         inkOverlayGif.start();
-        overlay.get().Open();
+        inkOverlay.get().Open();
     }
-    public static void CloseOverlay(){
+    public static void CloseInkOverlay(){
         inkOverlayGif.pause();
-        ImageView im = (ImageView) overlay.get().mView.findViewById(R.id.ink_overlay);
+        ImageView im = (ImageView) inkOverlay.get().mView.findViewById(R.id.ink_overlay);
         im.setImageDrawable(inkOverlayReverseGif);
         inkOverlayReverseGif.seekToFrame((inkOverlayGif.getCurrentFrameIndex()-48)*-1);
-        inkOverlayReverseGif.setSpeed(spreadSpeed);
+        inkOverlayReverseGif.setSpeed(inkSpreadDecay);
         inkOverlayReverseGif.start();
-        overlay.get().Close();
+        inkOverlay.get().Close();
     }
 }

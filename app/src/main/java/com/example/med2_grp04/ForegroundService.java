@@ -15,7 +15,7 @@ import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
 public class ForegroundService extends Service {
-    private Window window;
+    private InkOverlayWindow inkOverlayWindow;
     private String[] restrictedApps = {
             "com.example.med2_grp04",
             "com.reddit.frontpage",
@@ -45,8 +45,8 @@ public class ForegroundService extends Service {
         }else{
             startForeground(1, new Notification());
         }
-        window = new Window(this);
-        OverlayManager.updateOverlayWindow(window);
+        inkOverlayWindow = new InkOverlayWindow(this);
+        OverlayManager.updateInkOverlayWindow(inkOverlayWindow);
     }
 
     @Override
@@ -67,10 +67,10 @@ public class ForegroundService extends Service {
 
             if (isRestricted(pkg)){
                 Log.d("RESTRICTED", "Show Overlay");
-                OverlayManager.OpenOverlay();
+                OverlayManager.OpenInkOverlay();
             } else {
                 Log.d("NOT RESTRICTED", "Hide Overlay");
-                OverlayManager.CloseOverlay();
+                OverlayManager.CloseInkOverlay();
             }
         }
     };
