@@ -9,11 +9,11 @@
     android:visibility="visible">
 
     <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/ink_overlay"
+        android:id="@+id/inky_overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
-        android:src="@drawable/ink_screen_overlay"
+        android:src="@drawable/inky_idle"
         android:visibility="visible" />
 
 </RelativeLayout>

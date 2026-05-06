@@ -9,11 +9,18 @@ import androidx.appcompat.app.AppCompatActivity;
 public class OverlayManager extends AppCompatActivity {
     public static GifDrawable inkOverlayGif;
     public static GifDrawable inkOverlayReverseGif;
+    public static GifDrawable inkyOverlayGif;
     public static float spreadSpeed = 0.05f;
     private static WeakReference<Window> overlay;
+    private static WeakReference<InkyOverlayWindow> inkyOverlay;
 
     public static void updateOverlayWindow(Window window){
         overlay = new WeakReference<>(window);
+    }
+    public static void updateOverlayInkyWindow(InkyOverlayWindow window){
+        System.out.println("Running updateOverlayInkyWindow in overlayManager");
+        inkyOverlay = new WeakReference<>(window);
+        System.out.println("Completing updateOverlayInkyWindow in overlayManager");
     }
 
     public static void OpenOverlay(){
@@ -24,6 +31,7 @@ public class OverlayManager extends AppCompatActivity {
         inkOverlayGif.setSpeed(spreadSpeed);
         inkOverlayGif.start();
         overlay.get().Open();
+
     }
     public static void CloseOverlay(){
         inkOverlayGif.pause();
@@ -34,4 +42,16 @@ public class OverlayManager extends AppCompatActivity {
         inkOverlayReverseGif.start();
         overlay.get().Close();
     }
+
+    public static void InkyIdleAnimation(){
+        System.out.println("Running InkyIdleAnimation in overlayManager");
+        ImageView im = (ImageView) inkyOverlay.get().mView.findViewById(R.id.inky_overlay);
+        im.setImageDrawable(inkyOverlayGif);
+        inkyOverlayGif.setSpeed(spreadSpeed);
+        inkyOverlayGif.start();
+        inkyOverlay.get().Open();
+        System.out.println("Complete InkyIdleAnimation in overlayManager");
+    }
+
+
 }
