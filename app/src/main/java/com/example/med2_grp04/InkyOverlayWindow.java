@@ -22,7 +22,7 @@ public class InkyOverlayWindow {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             mParams = new WindowManager.LayoutParams(
                     WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
-                    WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                    WindowManager.LayoutParams.FLAG_SPLIT_TOUCH,
                     PixelFormat.TRANSLUCENT
             );
         }

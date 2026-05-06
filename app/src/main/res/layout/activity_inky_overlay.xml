@@ -10,9 +10,14 @@
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/inky_overlay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="fitXY"
+        android:layout_width="158dp"
+        android:layout_height="169dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="-2dp"
+        android:layout_marginBottom="31dp"
+        android:background="#EED00808"
+        android:scaleType="centerCrop"
         android:src="@drawable/inky_idle"
         android:visibility="visible" />
 

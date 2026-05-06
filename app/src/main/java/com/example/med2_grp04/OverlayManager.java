@@ -11,6 +11,7 @@ public class OverlayManager extends AppCompatActivity {
     public static GifDrawable inkOverlayReverseGif;
     public static GifDrawable inkyOverlayGif;
     public static float spreadSpeed = 0.05f;
+    public static float movementSpeed = 1f;
     private static WeakReference<Window> overlay;
     private static WeakReference<InkyOverlayWindow> inkyOverlay;
 
@@ -47,7 +48,7 @@ public class OverlayManager extends AppCompatActivity {
         System.out.println("Running InkyIdleAnimation in overlayManager");
         ImageView im = (ImageView) inkyOverlay.get().mView.findViewById(R.id.inky_overlay);
         im.setImageDrawable(inkyOverlayGif);
-        inkyOverlayGif.setSpeed(spreadSpeed);
+        inkyOverlayGif.setSpeed(movementSpeed);
         inkyOverlayGif.start();
         inkyOverlay.get().Open();
         System.out.println("Complete InkyIdleAnimation in overlayManager");
