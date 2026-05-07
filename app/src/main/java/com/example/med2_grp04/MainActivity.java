@@ -41,11 +41,16 @@ public class MainActivity extends AppCompatActivity {
             OverlayManager.inkOverlayGif = new GifDrawable(getResources(), R.drawable.ink_screen_overlay);
             OverlayManager.inkOverlayGif.reset();
 
-            OverlayManager.inkyOverlayGif = new GifDrawable(getResources(), R.drawable.inky_idle);
-            OverlayManager.inkyOverlayGif.reset();
-
             OverlayManager.inkOverlayReverseGif = new GifDrawable(getResources(), R.drawable.ink_screen_overlay_reverse);
             OverlayManager.inkOverlayReverseGif.seekToFrame(47);
+
+            OverlayManager.inkyOverlayIdleGif = new GifDrawable(getResources(), R.drawable.inky_idle);
+            OverlayManager.inkyOverlayIdleGif.reset();
+
+            OverlayManager.inkyOverlayWalkingGif = new GifDrawable(getResources(), R.drawable.inky_walking);
+            OverlayManager.inkyOverlayWalkingGif.reset();
+
+
             System.out.println("Completing onCreate in main");
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -63,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                     System.out.println("Completing onClick if statement in MainActivity");
                 } else{
                     OverlayManager.CloseOverlay();
-                    OverlayManager.InkyIdleAnimation();
+                    OverlayManager.InkyClose();
                     System.out.println("Completing onClick else statement in MainActivity");
                 }
             }

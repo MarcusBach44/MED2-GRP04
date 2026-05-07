@@ -9,8 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 public class OverlayManager extends AppCompatActivity {
     public static GifDrawable inkOverlayGif;
     public static GifDrawable inkOverlayReverseGif;
-    public static GifDrawable inkyOverlayGif;
-    public static float spreadSpeed = 0.05f;
+    public static GifDrawable inkyOverlayIdleGif;
+    public static GifDrawable inkyOverlayWalkingGif;
+    public static float spreadSpeed = 1f;
     public static float movementSpeed = 1f;
     private static WeakReference<Window> overlay;
     private static WeakReference<InkyOverlayWindow> inkyOverlay;
@@ -47,11 +48,41 @@ public class OverlayManager extends AppCompatActivity {
     public static void InkyIdleAnimation(){
         System.out.println("Running InkyIdleAnimation in overlayManager");
         ImageView im = (ImageView) inkyOverlay.get().mView.findViewById(R.id.inky_overlay);
-        im.setImageDrawable(inkyOverlayGif);
-        inkyOverlayGif.setSpeed(movementSpeed);
-        inkyOverlayGif.start();
+        im.setImageDrawable(inkyOverlayIdleGif);
+        inkyOverlayIdleGif.setSpeed(movementSpeed);
+        inkyOverlayIdleGif.start();
         inkyOverlay.get().Open();
         System.out.println("Complete InkyIdleAnimation in overlayManager");
+    }
+
+    public static void InkySleepingAnimation(){
+
+    }
+
+    public static void InkyEnjoymentAnimation(){
+
+    }
+
+    public static void InkyFrustatedAnimation(){
+
+    }
+
+    public static void InkyWalkingAnimation(){
+        System.out.println("Running InkyWalkingAnimation in overlayManager");
+        ImageView im = (ImageView) inkyOverlay.get().mView.findViewById(R.id.inky_overlay);
+        im.setImageDrawable(inkyOverlayWalkingGif);
+        inkyOverlayWalkingGif.setSpeed(movementSpeed);
+        inkyOverlayWalkingGif.start();
+        inkyOverlay.get().Open();
+        System.out.println("Complete InkyWalkingAnimation in overlayManager");
+    }
+
+    public static void InkyPressingAnimation(){
+
+    }
+
+    public static void InkyClose(){
+        inkyOverlay.get().Close();
     }
 
 
