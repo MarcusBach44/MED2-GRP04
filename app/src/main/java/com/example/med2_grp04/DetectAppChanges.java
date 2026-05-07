@@ -2,14 +2,14 @@ package com.example.med2_grp04;
 
 import android.accessibilityservice.AccessibilityService;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 
 public class DetectAppChanges extends AccessibilityService {
     private static String lastPackage;
     @Override
-    public void onInterrupt() {
-    }
+    public void onInterrupt() {}
 
     @Override
     protected void onServiceConnected() {
@@ -37,4 +37,5 @@ public class DetectAppChanges extends AccessibilityService {
         intent.putExtra("package", pkg);
         sendBroadcast(intent);
     }
+
 }

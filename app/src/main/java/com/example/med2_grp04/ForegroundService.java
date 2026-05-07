@@ -1,4 +1,5 @@
 package com.example.med2_grp04;
+import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -7,6 +8,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
@@ -14,15 +17,13 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class ForegroundService extends Service {
     private InkOverlayWindow inkOverlayWindow;
-    private String[] restrictedApps = {
-            "com.example.med2_grp04",
-            "com.reddit.frontpage",
-            "com.google.android.youtube",
-            "com.instagram.android",
-            "com.zhiliaoapp.musically"
-    };
+    static public ArrayList<String> restrictedApps = new ArrayList<String>();
     public ForegroundService() {
     }
     @Nullable @Override
@@ -30,6 +31,7 @@ public class ForegroundService extends Service {
         throw new UnsupportedOperationException("Not Implemented");
     }
 
+    @SuppressLint("UnspecifiedRegisterReceiverFlag")
     @Override
     public void onCreate() {
         super.onCreate();

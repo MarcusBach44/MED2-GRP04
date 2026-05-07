@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
 
@@ -23,8 +24,7 @@
         app:icon="@drawable/controller"
         app:layout_constraintBottom_toTopOf="@+id/btnSettings"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnSettings"
@@ -49,18 +49,19 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/venomblob"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-92dp" />
+        android:layout_marginTop="-76dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/venomblob" />
 
     <TextView
         android:id="@+id/TitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
 
-        android:layout_marginEnd="2dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginEnd="-257dp"
+        android:layout_marginBottom="80dp"
         android:fontFamily="sans-serif-medium"
         android:text="Inkur"
         android:textAlignment="center"
@@ -68,23 +69,21 @@
         android:textSize="48sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/btnSwitch"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
-        app:layout_constraintStart_toEndOf="@+id/imageView" />
+        app:layout_constraintEnd_toStartOf="@+id/imageView" />
 
     <Switch
         android:id="@+id/btnSwitch"
         android:layout_width="74dp"
         android:layout_height="57dp"
         android:layout_centerInParent="true"
-        android:layout_marginEnd="161dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginEnd="168dp"
+        android:layout_marginBottom="24dp"
         android:checked="false"
         android:scaleX="1.5"
         android:scaleY="1.5"
         android:thumb="@drawable/button"
         android:track="@drawable/switchbutton"
         app:layout_constraintBottom_toTopOf="@+id/btnBrainBreak"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

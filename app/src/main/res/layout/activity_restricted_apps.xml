@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context="RestrictedApps">
 
     <ImageButton
@@ -129,12 +130,25 @@
         android:layout_width="297dp"
         android:layout_height="213dp"
         android:layout_marginStart="57dp"
-        android:layout_marginTop="85dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="57dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/RecoveryRate" />
 
+    <Button
+        android:id="@+id/btnViewAllApps"
+        android:layout_width="178dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="122dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="112dp"
+        android:backgroundTint="@color/lightgrey"
+        android:text=">       View All Apps"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listViewInstalledApps" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
