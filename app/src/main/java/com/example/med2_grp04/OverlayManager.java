@@ -70,10 +70,10 @@ public class OverlayManager extends AppCompatActivity {
     public static void InkyWalkingAnimation(){
         System.out.println("Running InkyWalkingAnimation in overlayManager");
         ImageView im = (ImageView) inkyOverlay.get().mView.findViewById(R.id.inky_overlay);
+        inkyOverlayWalkingGif.reset();
         im.setImageDrawable(inkyOverlayWalkingGif);
         inkyOverlayWalkingGif.setSpeed(movementSpeed);
         inkyOverlayWalkingGif.start();
-        inkyOverlay.get().Open();
         System.out.println("Complete InkyWalkingAnimation in overlayManager");
     }
 
