@@ -34,25 +34,99 @@
         android:id="@+id/btnTicTacToe"
         android:layout_width="128dp"
         android:layout_height="121dp"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="52dp"
         android:layout_marginTop="136dp"
-        android:backgroundTint="@color/black"
+        android:backgroundTint="@color/grey"
+        android:contentDescription="TicTacToe button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_dialog_map"
-        android:contentDescription="TicTacToe button"/>
+        app:srcCompat="@android:drawable/ic_dialog_map" />
 
     <TextView
         android:id="@+id/TicTacToe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="TicTacToe"
-        android:textStyle="bold"
         android:textSize="14sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnTicTacToe" />
+
+    <ImageButton
+        android:id="@+id/btnMineSweeper"
+        android:layout_width="128dp"
+        android:layout_height="121dp"
+        android:layout_marginStart="232dp"
+        android:layout_marginTop="136dp"
+        android:backgroundTint="@color/grey"
+        android:contentDescription="Minesweeper button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_dialog_map" />
+    <TextView
+        android:id="@+id/MineSweeper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="252dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="Minesweeper"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnMineSweeper" />
+
+    <ImageButton
+        android:id="@+id/btnWordle"
+        android:layout_width="128dp"
+        android:layout_height="121dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="296dp"
+        android:backgroundTint="@color/grey"
+        android:contentDescription="Wordle button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_dialog_map" />
+
+    <TextView
+        android:id="@+id/Wordle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:text="Wordle"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnWordle" />
+
+    <ImageButton
+        android:id="@+id/btnSudoku"
+        android:layout_width="128dp"
+        android:layout_height="121dp"
+        android:layout_marginStart="232dp"
+        android:layout_marginTop="300dp"
+        android:backgroundTint="@color/grey"
+        android:contentDescription="Sudoku button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_dialog_map" />
+
+    <TextView
+        android:id="@+id/Sudoku"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="268dp"
+        android:gravity="center"
+        android:text="Sudoku"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSudoku" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
