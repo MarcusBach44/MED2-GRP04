@@ -12,8 +12,10 @@ public class brainbreak extends AppCompatActivity {
     private ImageButton btnMineSweeper;
     private ImageButton btnWordle;
     private ImageButton btnSudoku;
-    private ArrayList<String> activeSettings = new ArrayList<>();
-
+    public static ArrayList<String> activeSettings = new ArrayList<>();
+    public static boolean isGameEnabled(String gameName) {
+        return activeSettings.contains(gameName);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

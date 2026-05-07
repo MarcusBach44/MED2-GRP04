@@ -29,6 +29,11 @@ public class TicTacToe extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (!brainbreak.isGameEnabled("TicTacToe")){
+            finish();
+            return;
+        }
         setContentView(R.layout.activity_tic_tac_toe);
 
         gridLayout = findViewById(R.id.gridLayout);
