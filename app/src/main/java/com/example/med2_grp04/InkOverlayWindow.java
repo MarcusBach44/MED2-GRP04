@@ -11,13 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 
-public class Window {
+public class InkOverlayWindow {
     public Context context;
     public View mView;
     private WindowManager.LayoutParams mParams;
     private WindowManager mWindowManager;
     private LayoutInflater layoutInflater;
-    public Window(Context context){
+    public InkOverlayWindow(Context context){
         this.context=context;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             mParams = new WindowManager.LayoutParams(
@@ -28,7 +28,7 @@ public class Window {
         }
 
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        mView = layoutInflater.inflate(R.layout.popup_window,null);
+        mView = layoutInflater.inflate(R.layout.activity_ink_overlay,null);
         mParams.gravity = Gravity.CENTER;
         mWindowManager = (WindowManager) context.getSystemService(WINDOW_SERVICE);
     }
