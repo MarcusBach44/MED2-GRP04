@@ -1,20 +1,27 @@
 package com.example.med2_grp04;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SeekBar;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -42,6 +49,8 @@ public class SettingsRestrictedApps extends AppCompatActivity {
 
     TextView valueRecoveryRate;
 
+    Context context=this;
+
     @Override
     protected void onCreate (Bundle savedInstanceState)
     {
@@ -63,7 +72,6 @@ public class SettingsRestrictedApps extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
 
         seekBarCoverageAmount = (SeekBar)findViewById(R.id.seekBar1);
         valueCoverageAmount = (TextView)findViewById(R.id.CoverageAmount);
@@ -168,6 +176,14 @@ public class SettingsRestrictedApps extends AppCompatActivity {
     }
 
     private class MyAdapter extends BaseAdapter {
+
+        class ViewHolder{
+            TextView name;
+            ImageView icon;
+            @SuppressLint("UseSwitchCompatOrMaterialCode")
+            Switch appSwitch;
+        }
+
         @Override
         public int getCount() {
             return sortedNames.size();
@@ -183,26 +199,52 @@ public class SettingsRestrictedApps extends AppCompatActivity {
             return position;
         }
 
+        @SuppressLint("ResourceType")
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
+            ViewHolder holder;
+
             if (convertView == null) {
                 convertView = getLayoutInflater().inflate(R.drawable.list_apps, parent, false);
+
+            holder = new ViewHolder();
+            holder.name=convertView.findViewById(R.id.appName);
+            holder.icon=convertView.findViewById(R.id.appIcon);
+            holder.appSwitch=convertView.findViewById(R.id.appSwitch);
+
+            convertView.setTag(holder);}
+            else
+            {
+            holder = (ViewHolder) convertView.getTag();
             }
 
-            TextView name = convertView.findViewById(R.id.appName);
-            ImageView icon = convertView.findViewById(R.id.appIcon);
+            String pkg = sortedPackages.get(position);
+            String appName = sortedNames.get(position);
+            Drawable appIcon = sortedIcons.get(position);
 
+            holder.name.setText(appName);
+            holder.icon.setImageDrawable(appIcon);
 
+            SharedPreferences prefs = getSharedPreferences("Restricted Apps", MODE_PRIVATE);
+            boolean savedState = prefs.getBoolean(pkg,false);
 
-            name.setText(sortedNames.get(position));
-            icon.setImageDrawable(sortedIcons.get(position));
+            holder.appSwitch.setOnCheckedChangeListener(null);
+            holder.appSwitch.setChecked(savedState);
+
+            holder.appSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                if (isChecked) {
+                    if (!ForegroundService.restrictedApps.contains(pkg)) {
+                        ForegroundService.restrictedApps.add(pkg);
+                    }
+                    prefs.edit().putBoolean(pkg, true).apply();
+                } else {
+                    ForegroundService.restrictedApps.remove(pkg);
+                    prefs.edit().putBoolean(pkg, false).apply();
+                }
+        });
 
             return convertView;
 
-
-            };
-
         }
-
-    }
+    }}
 
