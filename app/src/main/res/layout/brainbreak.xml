@@ -54,9 +54,11 @@
         android:layout_marginTop="136dp"
         android:backgroundTint="@color/grey"
         android:contentDescription="TicTacToe button"
+        android:scaleType="centerCrop"
+        app:tint="#96646464"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_dialog_map" />
+        app:srcCompat="@drawable/tictactoe" />
 
     <TextView
         android:id="@+id/TicTacToe"
@@ -79,9 +81,11 @@
         android:layout_marginTop="136dp"
         android:backgroundTint="@color/grey"
         android:contentDescription="Minesweeper button"
+        android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_dialog_map" />
+        app:srcCompat="@drawable/minesweeper"
+        app:tint="#96646464" />
     <TextView
         android:id="@+id/MineSweeper"
         android:layout_width="wrap_content"
@@ -103,9 +107,11 @@
         android:layout_marginTop="296dp"
         android:backgroundTint="@color/grey"
         android:contentDescription="Wordle button"
+        android:scaleType="centerCrop"
+        app:tint="#96646464"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_dialog_map" />
+        app:srcCompat="@drawable/wordle" />
 
     <TextView
         android:id="@+id/Wordle"
@@ -128,9 +134,11 @@
         android:layout_marginTop="300dp"
         android:backgroundTint="@color/grey"
         android:contentDescription="Sudoku button"
+        android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_dialog_map" />
+        app:srcCompat="@drawable/sudoku"
+        app:tint="#96646464" />
 
     <TextView
         android:id="@+id/Sudoku"
