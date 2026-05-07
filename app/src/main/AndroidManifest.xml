@@ -22,11 +22,12 @@
 
         <activity
             android:name=".TicTacToe"
-            android:name=".RestrictedApps"
             android:exported="false" />
 
         <activity
             android:name=".SettingsRestrictedApps"/>
+
+        <activity android:name=".RestrictedApps"/>
 
         <service
             android:name=".ForegroundService"
@@ -57,10 +58,6 @@
             </intent-filter>
 
         </activity>
-
-        <activity
-            android:name=".MainActivity"
-            android:exported="false" />
 
         <meta-data
             android:name="preloaded_fonts"
