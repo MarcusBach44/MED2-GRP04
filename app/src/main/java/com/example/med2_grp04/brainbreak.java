@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class brainbreak extends AppCompatActivity {
+    private ImageButton btnBackArrow;
     private ImageButton btnTicTacToe;
     private ImageButton btnMineSweeper;
     private ImageButton btnWordle;
@@ -17,13 +18,19 @@ public class brainbreak extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.brainbreak);
-
+        btnBackArrow=findViewById(R.id.btnBackArrow);
 
         btnTicTacToe = findViewById(R.id.btnTicTacToe);
         btnMineSweeper = findViewById(R.id.btnMineSweeper);
         btnWordle = findViewById(R.id.btnWordle);
         btnSudoku = findViewById(R.id.btnSudoku);
 
+        btnBackArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                 finish();
+            }
+        });
         btnTicTacToe.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -50,6 +57,7 @@ public class brainbreak extends AppCompatActivity {
                 toggleBrainBreak("Sudoku", btnSudoku);
             }
         });
+        loadSettings();
     }
     private void toggleBrainBreak(String name, ImageButton button) {
         if (!activeSettings.contains(name)) {
@@ -58,6 +66,39 @@ public class brainbreak extends AppCompatActivity {
         } else {
             activeSettings.remove(name);
             button.setBackgroundTintList(android.content.res.ColorStateList.valueOf(getResources().getColor(R.color.grey)));
+        }
+        saveSettings();
+    }
+    private void saveSettings() {
+        android.content.SharedPreferences sharedPreferences = getSharedPreferences("BrainBreakPrefs", MODE_PRIVATE);
+        android.content.SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        String settingsString = String.join(",", activeSettings);
+        editor.putString("active_games", settingsString);
+        editor.apply();
+    }
+    private void loadSettings() {
+        android.content.SharedPreferences sharedPreferences = getSharedPreferences("BrainBreakPrefs", MODE_PRIVATE);
+        String settingsString = sharedPreferences.getString("active_games", "");
+
+        if (!settingsString.isEmpty()) {
+            String[] games = settingsString.split(",");
+            for (String game : games) {
+                activeSettings.add(game);
+                updateButtonUI(game);
+            }
+        }
+    }
+
+    private void updateButtonUI(String name) {
+        ImageButton btn = null;
+        if (name.equals("TicTacToe")) btn = btnTicTacToe;
+        else if (name.equals("MineSweeper")) btn = btnMineSweeper;
+        else if (name.equals("Wordle")) btn = btnWordle;
+        else if (name.equals("Sudoku")) btn = btnSudoku;
+
+        if (btn != null) {
+            btn.setBackgroundTintList(android.content.res.ColorStateList.valueOf(getResources().getColor(R.color.black)));
         }
     }
 }

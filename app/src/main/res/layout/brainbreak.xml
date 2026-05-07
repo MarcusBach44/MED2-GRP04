@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
-        <TextView
+    <TextView
         android:id="@+id/BrainBreak"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,7 +28,23 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageButton
+        android:id="@+id/btnBackArrow"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="68dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Back arrow"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="?attr/actionModeCloseDrawable"
+        app:tint="@color/black" />
 
     <ImageButton
         android:id="@+id/btnTicTacToe"
