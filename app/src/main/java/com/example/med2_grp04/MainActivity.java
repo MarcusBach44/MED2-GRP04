@@ -22,6 +22,7 @@ import pl.droidsonroids.gif.GifDrawable;
 public class MainActivity extends AppCompatActivity {
     public static boolean isOverlayActive = false;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +32,13 @@ public class MainActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+         findViewById(R.id.btnBrainBreak).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, brainbreak.class);
+                startActivity(intent);
+            }
         });
 
         CheckOverlayPermission();
