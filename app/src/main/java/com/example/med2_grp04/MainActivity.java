@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         InstigateGames games =
                 new InstigateGames(MainActivity.this);
 
-        games.startPopupTimer();
+        games.startPopupLoop();
     }
 
 
