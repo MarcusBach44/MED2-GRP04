@@ -21,6 +21,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MED2GRP04">
+        <activity
+            android:name=".Settings_Options"
+            android:exported="false" />
 
         <activity
             android:name=".TicTacToe"

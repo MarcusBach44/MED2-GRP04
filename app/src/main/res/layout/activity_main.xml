@@ -24,6 +24,10 @@
         app:icon="@drawable/controller"
         app:layout_constraintBottom_toTopOf="@+id/btnSettings"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    
+
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -88,5 +92,15 @@
         android:track="@drawable/switchbutton"
         app:layout_constraintBottom_toTopOf="@+id/btnBrainBreak"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/ToSettings_options"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="504dp"
+        android:text="Settings_Options"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
