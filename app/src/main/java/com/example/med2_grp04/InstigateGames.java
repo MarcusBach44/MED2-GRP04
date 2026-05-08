@@ -43,7 +43,7 @@ public class InstigateGames {
                 checkAndShowPopup();
 
                 // repeating section
-                handler.postDelayed(this, 30000);
+                handler.postDelayed(this, 10000);
             }
 
         }, 10000);
@@ -122,7 +122,8 @@ public class InstigateGames {
                         new Intent(context,
                                 TicTacToe.class);
 
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                        | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
 
                 context.startActivity(intent);
 

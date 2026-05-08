@@ -24,10 +24,8 @@
 
         <activity
             android:name=".TicTacToe"
-            android:exported="false" />
-
-        <activity android:name=".InstigateGames"
-                  android:exported="false"/>
+            android:excludeFromRecents="true"
+            android:taskAffinity="" />
 
         <activity
             android:name=".SettingsRestrictedApps"/>
