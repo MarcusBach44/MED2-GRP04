@@ -215,11 +215,7 @@ public class TicTacToe extends AppCompatActivity {
         builder.setPositiveButton("Continue",
                 (dialog, which) -> {
 
-                    Intent intent =
-                            new Intent(TicTacToe.this,
-                                    MainActivity.class);
-
-                    startActivity(intent);
+                    InstigateGames.isMinigameActive = false;
 
                     finish();
                 });
@@ -265,11 +261,7 @@ public class TicTacToe extends AppCompatActivity {
         builder.setPositiveButton("Continue",
                 (dialog, which) -> {
 
-                    Intent intent =
-                            new Intent(TicTacToe.this,
-                                    MainActivity.class);
-
-                    startActivity(intent);
+                    InstigateGames.isMinigameActive = false;
 
                     finish();
                 });

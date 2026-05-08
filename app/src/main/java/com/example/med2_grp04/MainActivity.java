@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
                     OverlayManager.CloseInkOverlay();
                 }
             }
+
         });
         findViewById(R.id.btnSettings).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +77,11 @@ public class MainActivity extends AppCompatActivity {
                 Change();
             }
         });
+
+        InstigateGames games =
+                new InstigateGames(MainActivity.this);
+
+        games.startPopupLoop();
     }
 
 
