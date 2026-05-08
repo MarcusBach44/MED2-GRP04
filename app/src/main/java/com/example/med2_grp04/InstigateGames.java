@@ -59,9 +59,9 @@ public class InstigateGames {
             return;
         }
 
-        if (!ForegroundService.restrictedApps.contains(currentPackage)) {
-            return;
-        }
+       // if (!ForegroundService.restrictedApps.contains(currentPackage)) {
+         //   return;
+       // }
 
         showMiniGamePopup();
     }
