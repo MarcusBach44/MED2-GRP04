@@ -25,6 +25,11 @@ public class DetectAppChanges extends AccessibilityService {
 
             String pkg = pkgCs.toString();
             if (!pkg.equals(lastPackage)){
+
+                if (InstigateGames.isMinigameActive) {
+                    return;
+                }
+
                 lastPackage = pkg;
                 Log.d("SCREEN CHANGE", "App Changed");
                 onAppChange(pkg);

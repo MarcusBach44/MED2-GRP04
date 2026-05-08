@@ -55,7 +55,8 @@ public class InstigateGames {
             return;
         }
 
-        if (popupView != null) {
+        if (popupView != null &&
+                popupView.getVisibility() == View.VISIBLE) {
             return;
         }
 
