@@ -36,17 +36,14 @@
         app:srcCompat="@drawable/smallinky" />
 
     <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="422dp"
-        android:layout_height="256dp"
-        android:layout_marginTop="4dp"
-        android:scaleX="1.08"
-        android:scaleY="1.15"
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-76dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.545"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ink" />
+        app:srcCompat="@drawable/venomblob" />
 
     <Button
         android:id="@+id/button"
