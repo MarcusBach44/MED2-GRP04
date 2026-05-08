@@ -1,5 +1,7 @@
 package com.example.med2_grp04;
 
+import static android.content.Intent.FLAG_ACTIVITY_REORDER_TO_FRONT;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -8,11 +10,10 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.text.Layout;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CompoundButton;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -21,7 +22,6 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -59,13 +59,22 @@ public class SettingsRestrictedApps extends AppCompatActivity {
         textViewStatus = findViewById(R.id.txtRestrictApps);
         listViewAppsInstalled = findViewById(R.id.listViewInstalledApps);
 
-        ImageButton btnBack = findViewById(R.id.btnBack);
-        btnBack.setOnClickListener(new View.OnClickListener(){
+        ImageButton btnBackToMainSettings = findViewById(R.id.btnBackToMainSettings);
+        btnBackToMainSettings.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+
+        findViewById(R.id.btnViewAllApps).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Change();
+            }
+        });
+
+        Button btnViewAllApps = findViewById(R.id.btnViewAllApps);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -135,6 +144,12 @@ public class SettingsRestrictedApps extends AppCompatActivity {
         });
 
         GetAllApps();
+    }
+
+    public void Change() {
+        Intent intent = new Intent(this, ViewAllApps.class);
+        intent.setFlags(FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(intent);
     }
 
     public void GetAllApps() {

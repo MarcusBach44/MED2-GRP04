@@ -2,10 +2,8 @@ package com.example.med2_grp04;
 
 import static android.content.Intent.FLAG_ACTIVITY_REORDER_TO_FRONT;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -90,9 +88,6 @@ public class MainActivity extends AppCompatActivity {
         intent.setFlags(FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
     }
-
-
-
 
     public void CheckOverlayPermission(){
         if (!Settings.canDrawOverlays(this)){

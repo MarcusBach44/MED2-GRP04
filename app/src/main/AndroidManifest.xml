@@ -29,6 +29,8 @@
 
         <activity
             android:name=".SettingsRestrictedApps"/>
+        <activity
+            android:name=".ViewAllApps"/>
 
         <service
             android:name=".ForegroundService"
