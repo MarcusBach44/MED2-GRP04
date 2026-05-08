@@ -8,11 +8,10 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.text.Layout;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CompoundButton;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -21,7 +20,6 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -59,13 +57,21 @@ public class SettingsRestrictedApps extends AppCompatActivity {
         textViewStatus = findViewById(R.id.txtRestrictApps);
         listViewAppsInstalled = findViewById(R.id.listViewInstalledApps);
 
-        ImageButton btnBack = findViewById(R.id.btnBack);
-        btnBack.setOnClickListener(new View.OnClickListener(){
+        ImageButton btnBackToMainSettings = findViewById(R.id.btnBackToMainSettings);
+        btnBackToMainSettings.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+
+        Button btnViewAllApps = findViewById(R.id.btnViewAllApps);
+
+        btnViewAllApps.setOnClickListener(v -> {
+            Intent intent = new Intent(SettingsRestrictedApps.this, ViewAllApps.class);
+            startActivity(intent);
+        });
+
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
