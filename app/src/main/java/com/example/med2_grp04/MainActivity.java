@@ -1,25 +1,30 @@
 package com.example.med2_grp04;
 
+import static android.content.Intent.FLAG_ACTIVITY_REORDER_TO_FRONT;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import java.lang.ref.WeakReference;
+import java.io.IOException;
+import pl.droidsonroids.gif.GifDrawable;
 
 public class MainActivity extends AppCompatActivity {
     public static boolean isOverlayActive = false;
     private static WeakReference<Window> overlay;
 Button ToSettings_options;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,30 +46,66 @@ Button ToSettings_options;
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //getSupportActionBar().setDisplayShowHomeEnabled(true);
+        });
+         findViewById(R.id.btnBrainBreak).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, brainbreak.class);
+                startActivity(intent);
+            }
+        });
 
 
         CheckOverlayPermission();
         CheckAccessibilityPermission();
         StartService();
 
-        findViewById(R.id.DisableButton).setOnClickListener(new View.OnClickListener(){
+        try {
+            OverlayManager.inkOverlayGif = new GifDrawable(getResources(), R.drawable.ink_screen_overlay);
+            OverlayManager.inkOverlayGif.reset();
+
+            OverlayManager.inkOverlayReverseGif = new GifDrawable(getResources(), R.drawable.ink_screen_overlay_reverse);
+            OverlayManager.inkOverlayReverseGif.reset();
+            OverlayManager.inkOverlayReverseGif.seekToFrame(47);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        findViewById(R.id.btnSwitch).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 isOverlayActive = !isOverlayActive;
                 if (isOverlayActive){
-                    overlay.get().Open();
+                    OverlayManager.OpenInkOverlay();
+                    OverlayManager.CloseInkOverlay();
                 } else{
-                    overlay.get().Close();
+                    OverlayManager.CloseInkOverlay();
                 }
 
             }
 
         });
+        findViewById(R.id.btnSettings).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Change();
+            }
+        });
+
+        InstigateGames games =
+                new InstigateGames(MainActivity.this);
+
+        games.startPopupLoop();
     }
 
-    public static void updateOverlayWindow(Window window){
-        overlay = new WeakReference<>(window);
+
+    public void Change(){
+        Intent intent = new Intent(this, SettingsRestrictedApps.class);
+        intent.setFlags(FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(intent);
     }
+
     public void CheckOverlayPermission(){
         if (!Settings.canDrawOverlays(this)){
             Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);

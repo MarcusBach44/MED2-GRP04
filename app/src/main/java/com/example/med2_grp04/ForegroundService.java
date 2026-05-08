@@ -1,4 +1,5 @@
 package com.example.med2_grp04;
+import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -7,6 +8,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
@@ -14,15 +17,13 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class ForegroundService extends Service {
-    private Window window;
-    private String[] restrictedApps = {
-            "com.example.med2_grp04",
-            "com.reddit.frontpage",
-            "com.google.android.youtube",
-            "com.instagram.android",
-            "com.zhiliaoapp.musically"
-    };
+    private InkOverlayWindow inkOverlayWindow;
+    static public ArrayList<String> restrictedApps = new ArrayList<String>();
     public ForegroundService() {
     }
     @Nullable @Override
@@ -30,6 +31,7 @@ public class ForegroundService extends Service {
         throw new UnsupportedOperationException("Not Implemented");
     }
 
+    @SuppressLint("UnspecifiedRegisterReceiverFlag")
     @Override
     public void onCreate() {
         super.onCreate();
@@ -45,8 +47,8 @@ public class ForegroundService extends Service {
         }else{
             startForeground(1, new Notification());
         }
-        window = new Window(this);
-        MainActivity.updateOverlayWindow(window);
+        inkOverlayWindow = new InkOverlayWindow(this);
+        OverlayManager.updateInkOverlayWindow(inkOverlayWindow);
     }
 
     @Override
@@ -59,23 +61,27 @@ public class ForegroundService extends Service {
         @Override
         public void onReceive(Context context, Intent intent) {
             String pkg = intent.getStringExtra("package");
+
+            InstigateGames.currentPackage = pkg;
+
             Log.d("RECEIVED", "Package Received " +pkg);
 
             if (pkg == null || !MainActivity.isOverlayActive) {
                 return;
             }
-
             if (isRestricted(pkg)){
                 Log.d("RESTRICTED", "Show Overlay");
-                window.Open();
+                OverlayManager.OpenInkOverlay();
             } else {
-                Log.d("NOT RESTRICTED", "Hide Overlay");
-                window.Close();
+                if (restrictedApps.contains(DetectAppChanges.previousApp)){
+                    OverlayManager.OpenInkOverlay();
+                }else {
+                    Log.d("NOT RESTRICTED", "Hide Overlay");
+                    OverlayManager.CloseInkOverlay();
+                }
             }
         }
     };
-
-
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -90,6 +96,7 @@ public class ForegroundService extends Service {
         }
         return false;
     }
+
     @RequiresApi(Build.VERSION_CODES.O)
     private void StartMyOwnForeground(){
         String NOTIFICATION_CHANNEL_ID = "example.permanence";
