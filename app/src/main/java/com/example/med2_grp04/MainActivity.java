@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
             OverlayManager.inkOverlayGif.reset();
 
             OverlayManager.inkOverlayReverseGif = new GifDrawable(getResources(), R.drawable.ink_screen_overlay_reverse);
+            OverlayManager.inkOverlayReverseGif.reset();
             OverlayManager.inkOverlayReverseGif.seekToFrame(47);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -62,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 isOverlayActive = !isOverlayActive;
                 if (isOverlayActive){
                     OverlayManager.OpenInkOverlay();
+                    OverlayManager.CloseInkOverlay();
                 } else{
                     OverlayManager.CloseInkOverlay();
                 }
