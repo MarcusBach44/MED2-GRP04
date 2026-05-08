@@ -69,13 +69,16 @@ public class ForegroundService extends Service {
             if (pkg == null || !MainActivity.isOverlayActive) {
                 return;
             }
-
             if (isRestricted(pkg)){
                 Log.d("RESTRICTED", "Show Overlay");
                 OverlayManager.OpenInkOverlay();
             } else {
-                Log.d("NOT RESTRICTED", "Hide Overlay");
-                OverlayManager.CloseInkOverlay();
+                if (restrictedApps.contains(DetectAppChanges.previousApp)){
+                    OverlayManager.OpenInkOverlay();
+                }else {
+                    Log.d("NOT RESTRICTED", "Hide Overlay");
+                    OverlayManager.CloseInkOverlay();
+                }
             }
         }
     };

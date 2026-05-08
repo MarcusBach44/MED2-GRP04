@@ -8,6 +8,7 @@ import android.view.accessibility.AccessibilityEvent;
 
 public class DetectAppChanges extends AccessibilityService {
     private static String lastPackage;
+    public static  String previousApp;
     @Override
     public void onInterrupt() {}
 
@@ -25,11 +26,7 @@ public class DetectAppChanges extends AccessibilityService {
 
             String pkg = pkgCs.toString();
             if (!pkg.equals(lastPackage)){
-
-                if (InstigateGames.isMinigameActive) {
-                    return;
-                }
-
+                previousApp = lastPackage;
                 lastPackage = pkg;
                 Log.d("SCREEN CHANGE", "App Changed");
                 onAppChange(pkg);
