@@ -59,21 +59,14 @@ public class InstigateGames {
             return;
         }
 
-       // if (!ForegroundService.restrictedApps.contains(currentPackage)) {
-         //   return;
-       // }
+        if (!ForegroundService.restrictedApps.contains(currentPackage)) {
+            return;
+        }
 
         showMiniGamePopup();
     }
 
     private void showMiniGamePopup() {
-
-        LayoutInflater inflater =
-                LayoutInflater.from(context);
-
-        popupView =
-                inflater.inflate(R.layout.popup_minigame,
-                        null);
 
         int layoutType;
 
@@ -97,7 +90,8 @@ public class InstigateGames {
                         layoutType,
 
                         WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
-                                | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN,
+                                | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
+                                | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,
 
                         PixelFormat.TRANSLUCENT
                 );
@@ -107,27 +101,39 @@ public class InstigateGames {
         params.x = 50;
         params.y = 300;
 
-        Button playButton =
-                popupView.findViewById(R.id.playButton);
+        LayoutInflater inflater =
+                LayoutInflater.from(context);
 
-        playButton.setOnClickListener(v -> {
+        if (popupView == null) {
 
-            isMinigameActive = true;
+            popupView =
+                    inflater.inflate(R.layout.popup_minigame,
+                            null);
 
-            Intent intent =
-                    new Intent(context,
-                            TicTacToe.class);
+            Button playButton =
+                    popupView.findViewById(R.id.playButton);
 
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            playButton.setOnClickListener(v -> {
 
-            context.startActivity(intent);
+                isMinigameActive = true;
 
-            removePopup();
-        });
+                Intent intent =
+                        new Intent(context,
+                                TicTacToe.class);
 
-        windowManager.addView(popupView, params);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-        // 5 secs rn
+                context.startActivity(intent);
+
+                removePopup();
+            });
+
+            windowManager.addView(popupView, params);
+        }
+
+        popupView.setVisibility(View.VISIBLE);
+
+        // remove after 5 seconds
         handler.postDelayed(this::removePopup, 5000);
     }
 
@@ -137,12 +143,10 @@ public class InstigateGames {
 
             try {
 
-                windowManager.removeView(popupView);
+                popupView.setVisibility(View.GONE);
 
             } catch (Exception ignored) {
             }
-
-            popupView = null;
         }
     }
 }

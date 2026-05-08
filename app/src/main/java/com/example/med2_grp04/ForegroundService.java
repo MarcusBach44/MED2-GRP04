@@ -61,6 +61,9 @@ public class ForegroundService extends Service {
         @Override
         public void onReceive(Context context, Intent intent) {
             String pkg = intent.getStringExtra("package");
+
+            InstigateGames.currentPackage = pkg;
+
             Log.d("RECEIVED", "Package Received " +pkg);
 
             if (pkg == null || !MainActivity.isOverlayActive) {
