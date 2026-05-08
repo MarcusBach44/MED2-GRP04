@@ -61,18 +61,24 @@ public class ForegroundService extends Service {
         @Override
         public void onReceive(Context context, Intent intent) {
             String pkg = intent.getStringExtra("package");
+
+            InstigateGames.currentPackage = pkg;
+
             Log.d("RECEIVED", "Package Received " +pkg);
 
             if (pkg == null || !MainActivity.isOverlayActive) {
                 return;
             }
-
             if (isRestricted(pkg)){
                 Log.d("RESTRICTED", "Show Overlay");
                 OverlayManager.OpenInkOverlay();
             } else {
-                Log.d("NOT RESTRICTED", "Hide Overlay");
-                OverlayManager.CloseInkOverlay();
+                if (restrictedApps.contains(DetectAppChanges.previousApp)){
+                    OverlayManager.OpenInkOverlay();
+                }else {
+                    Log.d("NOT RESTRICTED", "Hide Overlay");
+                    OverlayManager.CloseInkOverlay();
+                }
             }
         }
     };

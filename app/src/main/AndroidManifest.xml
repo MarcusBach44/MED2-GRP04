@@ -24,7 +24,8 @@
 
         <activity
             android:name=".TicTacToe"
-            android:exported="false" />
+            android:excludeFromRecents="true"
+            android:taskAffinity="" />
 
         <activity
             android:name=".SettingsRestrictedApps"/>
@@ -60,6 +61,7 @@
             </intent-filter>
 
         </activity>
+        <activity android:name=".brainbreak" android:exported="false" />
 
         <meta-data
             android:name="preloaded_fonts"
