@@ -85,6 +85,9 @@ public class brainbreak extends AppCompatActivity {
         editor.apply();
     }
     private void loadSettings() {
+
+        activeSettings.clear();
+
         setButtonState(btnTicTacToe, false);
         setButtonState(btnMineSweeper, false);
         setButtonState(btnWordle, false);
@@ -96,10 +99,9 @@ public class brainbreak extends AppCompatActivity {
         if (!settingsString.isEmpty()) {
             String[] games = settingsString.split(",");
             for (String game : games) {
-                if (!activeSettings.contains(game)) {
-                    activeSettings.add(game);
-                    updateButtonUI(game);
-                }
+                activeSettings.add(game);
+                updateButtonUI(game);
+
             }
         }
     }
