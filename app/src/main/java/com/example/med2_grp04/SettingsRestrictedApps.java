@@ -1,5 +1,7 @@
 package com.example.med2_grp04;
 
+import static android.content.Intent.FLAG_ACTIVITY_REORDER_TO_FRONT;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -65,13 +67,14 @@ public class SettingsRestrictedApps extends AppCompatActivity {
             }
         });
 
-        Button btnViewAllApps = findViewById(R.id.btnViewAllApps);
-
-        btnViewAllApps.setOnClickListener(v -> {
-            Intent intent = new Intent(SettingsRestrictedApps.this, ViewAllApps.class);
-            startActivity(intent);
+        findViewById(R.id.btnViewAllApps).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Change();
+            }
         });
 
+        Button btnViewAllApps = findViewById(R.id.btnViewAllApps);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -137,6 +140,12 @@ public class SettingsRestrictedApps extends AppCompatActivity {
         });
 
         GetAllApps();
+    }
+
+    public void Change() {
+        Intent intent = new Intent(this, ViewAllApps.class);
+        intent.setFlags(FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(intent);
     }
 
     public void GetAllApps() {
