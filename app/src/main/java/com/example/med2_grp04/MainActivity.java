@@ -21,7 +21,7 @@ import pl.droidsonroids.gif.GifDrawable;
 
 public class MainActivity extends AppCompatActivity {
     public static boolean isOverlayActive = false;
-    private static WeakReference<Window> overlay;
+    //private static WeakReference<Window> overlay;
 Button ToSettings_options;
 
 
@@ -35,18 +35,17 @@ Button ToSettings_options;
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
             });
-        ToSettings_options=(Button)findViewById(R.id.ToSettings_options);
-        ToSettings_options.setOnClickListener((v1 -> {
-            startActivity(new Intent(MainActivity.this,Settings_Options.class));
+        ToSettings_options = findViewById(R.id.ToSettings_options);
 
-        }));
+        ToSettings_options.setOnClickListener(v1 -> {
 
+            startActivity(new Intent(
+                    MainActivity.this,
+                    Settings_Options.class));
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //getSupportActionBar().setDisplayShowHomeEnabled(true);
         });
+
+
          findViewById(R.id.btnBrainBreak).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
