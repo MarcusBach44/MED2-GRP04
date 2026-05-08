@@ -85,5 +85,4 @@
         android:track="@drawable/switchbutton"
         app:layout_constraintBottom_toTopOf="@+id/btnBrainBreak"
         app:layout_constraintEnd_toEndOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
