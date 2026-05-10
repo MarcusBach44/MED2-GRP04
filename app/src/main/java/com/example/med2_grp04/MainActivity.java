@@ -50,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
             OverlayManager.inkyOverlayWalkingGif = new GifDrawable(getResources(), R.drawable.inky_walking);
             OverlayManager.inkyOverlayWalkingGif.reset();
 
+            OverlayManager.inkyOverlayIntroGif = new GifDrawable(getResources(), R.drawable.inky_walkingintro);
+            OverlayManager.inkyOverlayIntroGif.reset();
+
 
             System.out.println("Completing onCreate in main");
         } catch (IOException e) {
@@ -64,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 isOverlayActive = !isOverlayActive;
                 if (isOverlayActive){
                     OverlayManager.OpenOverlay();
-                    OverlayManager.InkyIdleAnimation();
+                    OverlayManager.InkyIntroAnimation();
                     System.out.println("Completing onClick if statement in MainActivity");
                 } else{
                     OverlayManager.CloseOverlay();

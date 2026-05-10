@@ -1,5 +1,7 @@
 package com.example.med2_grp04;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.widget.ImageView;
 import java.lang.ref.WeakReference;
 import pl.droidsonroids.gif.GifDrawable;
@@ -11,10 +13,11 @@ public class OverlayManager extends AppCompatActivity {
     public static GifDrawable inkOverlayReverseGif;
     public static GifDrawable inkyOverlayIdleGif;
     public static GifDrawable inkyOverlayWalkingGif;
+    public static GifDrawable inkyOverlayIntroGif;
     public static float spreadSpeed = 1f;
-    public static float movementSpeed = 1f;
+    public static float movementSpeed = 5.0f;
     private static WeakReference<Window> overlay;
-    private static WeakReference<InkyOverlayWindow> inkyOverlay;
+    public static WeakReference<InkyOverlayWindow> inkyOverlay;
 
     public static void updateOverlayWindow(Window window){
         overlay = new WeakReference<>(window);
@@ -48,8 +51,10 @@ public class OverlayManager extends AppCompatActivity {
     public static void InkyIdleAnimation(){
         System.out.println("Running InkyIdleAnimation in overlayManager");
         ImageView im = (ImageView) inkyOverlay.get().mView.findViewById(R.id.inky_overlay);
-        im.setImageDrawable(inkyOverlayIdleGif);
+        inkyOverlayIdleGif.stop();
+        inkyOverlayIdleGif.reset();
         inkyOverlayIdleGif.setSpeed(movementSpeed);
+        im.setImageDrawable(inkyOverlayIdleGif);
         inkyOverlayIdleGif.start();
         inkyOverlay.get().Open();
         System.out.println("Complete InkyIdleAnimation in overlayManager");
@@ -74,6 +79,17 @@ public class OverlayManager extends AppCompatActivity {
         im.setImageDrawable(inkyOverlayWalkingGif);
         inkyOverlayWalkingGif.setSpeed(movementSpeed);
         inkyOverlayWalkingGif.start();
+        System.out.println("Complete InkyWalkingAnimation in overlayManager");
+    }
+
+    public static void InkyIntroAnimation(){
+        System.out.println("Running InkyWalkingAnimation in overlayManager");
+        ImageView im = (ImageView) inkyOverlay.get().mView.findViewById(R.id.inky_overlay);
+        //im.setScaleType(ImageView.ScaleType.FIT_END);
+        im.setImageDrawable(inkyOverlayIntroGif);
+        inkyOverlayIntroGif.setSpeed(movementSpeed);
+        inkyOverlayIdleGif.start();
+        inkyOverlay.get().Open();
         System.out.println("Complete InkyWalkingAnimation in overlayManager");
     }
 

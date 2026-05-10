@@ -77,7 +77,8 @@ public class ForegroundService extends Service {
                 System.out.println("Running IsResticted in ForegroundService");
                 Log.d("RESTRICTED", "Show Overlay");
                 OverlayManager.OpenOverlay();
-                overlayProcessor.InkyIdleToWalking(2);
+                OverlayManager.InkyIntroAnimation();
+                //overlayProcessor.InkyIntroToIdle(24);
                 System.out.println("Completing IsResticted in ForegroundService");
             } else {
                 System.out.println("Running IsNotResticted in ForegroundService");
