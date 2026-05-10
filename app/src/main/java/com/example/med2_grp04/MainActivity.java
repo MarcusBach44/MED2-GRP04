@@ -20,6 +20,7 @@ import pl.droidsonroids.gif.GifDrawable;
 
 public class MainActivity extends AppCompatActivity {
     public static boolean isOverlayActive = false;
+    OverlayProcessor overlayProcessor = new OverlayProcessor();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +48,11 @@ public class MainActivity extends AppCompatActivity {
             OverlayManager.inkyOverlayIdleGif = new GifDrawable(getResources(), R.drawable.inky_idle);
             OverlayManager.inkyOverlayIdleGif.reset();
 
-            OverlayManager.inkyOverlayWalkingGif = new GifDrawable(getResources(), R.drawable.inky_walking);
-            OverlayManager.inkyOverlayWalkingGif.reset();
+            OverlayManager.inkyOverlaySleepingGif = new GifDrawable(getResources(), R.drawable.inky_sleeping);
+            OverlayManager.inkyOverlaySleepingGif.reset();
+
+            OverlayManager.inkyOverlayFrustratedGif = new GifDrawable(getResources(), R.drawable.inky_angry);
+            OverlayManager.inkyOverlayFrustratedGif.reset();
 
             OverlayManager.inkyOverlayIntroGif = new GifDrawable(getResources(), R.drawable.inky_walkingintro);
             OverlayManager.inkyOverlayIntroGif.reset();
@@ -68,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
                 if (isOverlayActive){
                     OverlayManager.OpenOverlay();
                     OverlayManager.InkyIntroAnimation();
+                    overlayProcessor.InkyIdleToFrustrated(5);
+
                     System.out.println("Completing onClick if statement in MainActivity");
                 } else{
                     OverlayManager.CloseOverlay();

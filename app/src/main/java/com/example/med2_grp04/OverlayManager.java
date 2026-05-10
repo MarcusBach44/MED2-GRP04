@@ -12,9 +12,11 @@ public class OverlayManager extends AppCompatActivity {
     public static GifDrawable inkOverlayGif;
     public static GifDrawable inkOverlayReverseGif;
     public static GifDrawable inkyOverlayIdleGif;
-    public static GifDrawable inkyOverlayWalkingGif;
     public static GifDrawable inkyOverlayIntroGif;
-    public static float spreadSpeed = 1f;
+    public static GifDrawable inkyOverlaySleepingGif;
+    public static GifDrawable inkyOverlayFrustratedGif;
+
+    public static float spreadSpeed = 0.05f;
     public static float movementSpeed = 5.0f;
     private static WeakReference<Window> overlay;
     public static WeakReference<InkyOverlayWindow> inkyOverlay;
@@ -56,12 +58,18 @@ public class OverlayManager extends AppCompatActivity {
         inkyOverlayIdleGif.setSpeed(movementSpeed);
         im.setImageDrawable(inkyOverlayIdleGif);
         inkyOverlayIdleGif.start();
-        inkyOverlay.get().Open();
         System.out.println("Complete InkyIdleAnimation in overlayManager");
     }
 
     public static void InkySleepingAnimation(){
-
+        System.out.println("Running InkySleepingAnimation in overlayManager");
+        ImageView im = (ImageView) inkyOverlay.get().mView.findViewById(R.id.inky_overlay);
+        inkyOverlaySleepingGif.stop();
+        inkyOverlaySleepingGif.reset();
+        inkyOverlaySleepingGif.setSpeed(movementSpeed);
+        im.setImageDrawable(inkyOverlaySleepingGif);
+        inkyOverlaySleepingGif.start();
+        System.out.println("Complete InkySleepingAnimation in overlayManager");
     }
 
     public static void InkyEnjoymentAnimation(){
@@ -69,32 +77,24 @@ public class OverlayManager extends AppCompatActivity {
     }
 
     public static void InkyFrustatedAnimation(){
-
-    }
-
-    public static void InkyWalkingAnimation(){
-        System.out.println("Running InkyWalkingAnimation in overlayManager");
+        System.out.println("Running InkyAngryAnimation in overlayManager");
         ImageView im = (ImageView) inkyOverlay.get().mView.findViewById(R.id.inky_overlay);
-        inkyOverlayWalkingGif.reset();
-        im.setImageDrawable(inkyOverlayWalkingGif);
-        inkyOverlayWalkingGif.setSpeed(movementSpeed);
-        inkyOverlayWalkingGif.start();
-        System.out.println("Complete InkyWalkingAnimation in overlayManager");
+        inkyOverlayFrustratedGif.stop();
+        inkyOverlayFrustratedGif.reset();
+        inkyOverlayFrustratedGif.setSpeed(movementSpeed);
+        im.setImageDrawable(inkyOverlayFrustratedGif);
+        inkyOverlayFrustratedGif.start();
+        System.out.println("Complete InkyAngryAnimation in overlayManager");
     }
 
     public static void InkyIntroAnimation(){
         System.out.println("Running InkyWalkingAnimation in overlayManager");
         ImageView im = (ImageView) inkyOverlay.get().mView.findViewById(R.id.inky_overlay);
-        //im.setScaleType(ImageView.ScaleType.FIT_END);
         im.setImageDrawable(inkyOverlayIntroGif);
         inkyOverlayIntroGif.setSpeed(movementSpeed);
         inkyOverlayIdleGif.start();
         inkyOverlay.get().Open();
         System.out.println("Complete InkyWalkingAnimation in overlayManager");
-    }
-
-    public static void InkyPressingAnimation(){
-
     }
 
     public static void InkyClose(){

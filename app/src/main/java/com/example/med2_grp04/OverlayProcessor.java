@@ -10,23 +10,22 @@ public class OverlayProcessor {
     private float InkyVelocityY = 0;
     private float gravity = 3f;
 
-    /*
+
     public void InkyIntroToIdle(long AmountOfTime) {
         long Milisecounds = AmountOfTime * 1000;
         final long[] ExtraTime = new long[1];
-        OverlayManager.InkyIntroAnimation();
-
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
-                Log.d("", "DurractionIdle Is Calculated" + OverlayManager.inkyOverlayIdleGif.getDuration());
-                long frames = 24 - OverlayManager.inkyOverlayIdleGif.getCurrentFrameIndex() + 2;
+                Log.d("", "DurractionIdle Is Calculated" + OverlayManager.inkyOverlayIntroGif.getDuration());
+                long frames = 24 - OverlayManager.inkyOverlayIntroGif.getCurrentFrameIndex() + 2;
                 ExtraTime[0] = 300 * frames;
 
                 new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         OverlayManager.InkyIdleAnimation();
+                        InkyIdleToFrustrated(8);
                     }
                 }, ExtraTime[0]);
             }
@@ -34,42 +33,25 @@ public class OverlayProcessor {
     }
 
 
-     */
-    /*
-    private void InkyWalkingForce() {
-        Handler handler = new Handler(Looper.getMainLooper());
-
-        ImageView imageView = (ImageView) OverlayManager.inkyOverlay.get().mView.findViewById(R.id.inky_overlay);
-        Runnable physicsLoop = new Runnable() {
+    public void InkyIdleToFrustrated(long AmountOfTime) {
+        long Milisecounds = AmountOfTime * 1000;
+        final long[] ExtraTime = new long[1];
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
-                Log.d("", "FrameWalking Is Calculated" + OverlayManager.inkyOverlayWalkingGif.getCurrentFrameIndex());
-                if(OverlayManager.inkyOverlayWalkingGif.getCurrentFrameIndex() > 4 || OverlayManager.inkyOverlayWalkingGif.getCurrentFrameIndex() < 7){
-                    Log.d("", "Im inside Wahoo");
-                    InkyVelocityY = -40f;
+                Log.d("", "DurractionIdle Is Calculated" + OverlayManager.inkyOverlayIdleGif.getDuration());
+                long frames = 8 - OverlayManager.inkyOverlayIdleGif.getCurrentFrameIndex() + 2;
+                ExtraTime[0] = 300 * frames;
 
-                }
-                if(OverlayManager.inkyOverlayWalkingGif.getCurrentFrameIndex() == 7){
-                    InkyVelocityY = 0;
-
-                }
-                Log.d("", "Velocity Is Calculated" + InkyVelocityY);
-                InkyVelocityY += gravity;
-                InkyVelocityY = Math.min(InkyVelocityY,0);
-                InkyVelocityX = Math.min(InkyVelocityX,0);
-                Log.d("", "Volocity now minimized Is Calculated" + InkyVelocityY);
-
-                imageView.setX(imageView.getX() + InkyVelocityX);
-                imageView.setY(imageView.getY() + InkyVelocityY);
-
-                handler.postDelayed(this, 16);
-
+                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        OverlayManager.InkyFrustatedAnimation();
+                    }
+                }, ExtraTime[0]);
             }
-        };
-
-        physicsLoop.run();
+        }, Milisecounds);
     }
-    */
 
 }
 
