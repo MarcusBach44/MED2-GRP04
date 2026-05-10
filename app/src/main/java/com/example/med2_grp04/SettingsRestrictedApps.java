@@ -88,6 +88,7 @@ public class SettingsRestrictedApps extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 valueCoverageAmount.setText(""+progress);
+               // OverlayManager. = progress / 100;
             }
 
             @Override
@@ -107,6 +108,8 @@ public class SettingsRestrictedApps extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 valueSpreadSpeed.setText(""+progress);
+                OverlayManager.inkSpreadSpeed = (float)progress / 100;
+                Log.d("TAG", ""+OverlayManager.inkSpreadSpeed);
             }
 
             @Override
@@ -126,6 +129,7 @@ public class SettingsRestrictedApps extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 valueRecoveryRate.setText(""+progress);
+                OverlayManager.inkRecoveryRate = (float) progress / 100;
             }
 
             @Override

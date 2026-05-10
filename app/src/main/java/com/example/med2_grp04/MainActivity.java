@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
@@ -20,6 +21,7 @@ import pl.droidsonroids.gif.GifDrawable;
 public class MainActivity extends AppCompatActivity {
     public static boolean isOverlayActive = false;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +31,13 @@ public class MainActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+         findViewById(R.id.btnBrainBreak).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, brainbreak.class);
+                startActivity(intent);
+            }
         });
 
         CheckOverlayPermission();
@@ -40,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
             OverlayManager.inkOverlayGif.reset();
 
             OverlayManager.inkOverlayReverseGif = new GifDrawable(getResources(), R.drawable.ink_screen_overlay_reverse);
+            OverlayManager.inkOverlayReverseGif.reset();
             OverlayManager.inkOverlayReverseGif.seekToFrame(47);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -52,10 +62,12 @@ public class MainActivity extends AppCompatActivity {
                 isOverlayActive = !isOverlayActive;
                 if (isOverlayActive){
                     OverlayManager.OpenInkOverlay();
+                    OverlayManager.CloseInkOverlay();
                 } else{
                     OverlayManager.CloseInkOverlay();
                 }
             }
+
         });
         findViewById(R.id.btnSettings).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +75,11 @@ public class MainActivity extends AppCompatActivity {
                 Change();
             }
         });
+
+        InstigateGames games =
+                new InstigateGames(MainActivity.this);
+
+        games.startPopupLoop();
     }
 
 
