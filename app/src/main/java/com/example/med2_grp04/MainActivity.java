@@ -22,8 +22,8 @@ import pl.droidsonroids.gif.GifDrawable;
 public class MainActivity extends AppCompatActivity {
     public static boolean isOverlayActive = false;
     //private static WeakReference<Window> overlay;
-Button ToSettings_options;
-
+    Button ToSettings_options;
+    OverlayProcessor overlayProcessor = new OverlayProcessor();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,12 +60,28 @@ Button ToSettings_options;
         StartService();
 
         try {
+            System.out.println("Running onCreate in main");
             OverlayManager.inkOverlayGif = new GifDrawable(getResources(), R.drawable.ink_screen_overlay);
             OverlayManager.inkOverlayGif.reset();
 
             OverlayManager.inkOverlayReverseGif = new GifDrawable(getResources(), R.drawable.ink_screen_overlay_reverse);
             OverlayManager.inkOverlayReverseGif.reset();
             OverlayManager.inkOverlayReverseGif.seekToFrame(47);
+
+            OverlayManager.inkyOverlayIdleGif = new GifDrawable(getResources(), R.drawable.inky_idle);
+            OverlayManager.inkyOverlayIdleGif.reset();
+
+            OverlayManager.inkyOverlaySleepingGif = new GifDrawable(getResources(), R.drawable.inky_sleeping);
+            OverlayManager.inkyOverlaySleepingGif.reset();
+
+            OverlayManager.inkyOverlayFrustratedGif = new GifDrawable(getResources(), R.drawable.inky_angry);
+            OverlayManager.inkyOverlayFrustratedGif.reset();
+
+            OverlayManager.inkyOverlayIntroGif = new GifDrawable(getResources(), R.drawable.inky_walkingintro);
+            OverlayManager.inkyOverlayIntroGif.reset();
+
+
+            System.out.println("Completing onCreate in main");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -74,12 +90,19 @@ Button ToSettings_options;
         findViewById(R.id.btnSwitch).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                System.out.println("Running onClick in MainActivity");
                 isOverlayActive = !isOverlayActive;
                 if (isOverlayActive){
                     OverlayManager.OpenInkOverlay();
                     OverlayManager.CloseInkOverlay();
+                    OverlayManager.InkyIntroAnimation();
+                    overlayProcessor.InkyIntroToIdle(1);
+
+                    System.out.println("Completing onClick if statement in MainActivity");
                 } else{
                     OverlayManager.CloseInkOverlay();
+                    OverlayManager.InkyClose();
+                    System.out.println("Completing onClick else statement in MainActivity");
                 }
 
             }

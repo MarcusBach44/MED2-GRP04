@@ -24,6 +24,16 @@ import java.util.List;
 public class ForegroundService extends Service {
     private InkOverlayWindow inkOverlayWindow;
     static public ArrayList<String> restrictedApps = new ArrayList<String>();
+    private Window window;
+    private InkyOverlayWindow InkyOverlay;
+    private OverlayProcessor overlayProcessor;
+    private String[] restrictedApps = {
+            "com.example.med2_grp04",
+            "com.reddit.frontpage",
+            "com.google.android.youtube",
+            "com.instagram.android",
+            "com.zhiliaoapp.musically"
+    };
     public ForegroundService() {
     }
     @Nullable @Override
@@ -49,6 +59,14 @@ public class ForegroundService extends Service {
         }
         inkOverlayWindow = new InkOverlayWindow(this);
         OverlayManager.updateInkOverlayWindow(inkOverlayWindow);
+
+        overlayProcessor = new OverlayProcessor();
+
+        window = new Window(this);
+        OverlayManager.updateOverlayWindow(window);
+
+        InkyOverlay = new InkyOverlayWindow(this);
+        OverlayManager.updateOverlayInkyWindow(InkyOverlay);
     }
 
     @Override
@@ -70,14 +88,22 @@ public class ForegroundService extends Service {
                 return;
             }
             if (isRestricted(pkg)){
+                System.out.println("Running IsResticted in ForegroundService");
                 Log.d("RESTRICTED", "Show Overlay");
-                OverlayManager.OpenInkOverlay();
+                OverlayManager.OpenOverlay();
+                OverlayManager.InkyIntroAnimation();
+                overlayProcessor.InkyIntroToIdle(24);
+                System.out.println("Completing IsResticted in ForegroundService");
             } else {
                 if (restrictedApps.contains(DetectAppChanges.previousApp)){
                     OverlayManager.OpenInkOverlay();
                 }else {
                     Log.d("NOT RESTRICTED", "Hide Overlay");
-                    OverlayManager.CloseInkOverlay();
+                    System.out.println("Running IsNotResticted in ForegroundService");
+                    Log.d("NOT RESTRICTED", "Hide Overlay");
+                    OverlayManager.CloseOverlay();
+                    OverlayManager.InkyClose();
+                    System.out.println("Completing IsNotResticted in ForegroundService");
                 }
             }
         }
