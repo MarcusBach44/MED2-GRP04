@@ -2,6 +2,8 @@ package com.example.med2_grp04;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.view.Gravity;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import java.lang.ref.WeakReference;
 import pl.droidsonroids.gif.GifDrawable;
@@ -53,6 +55,13 @@ public class OverlayManager extends AppCompatActivity {
     public static void InkyIdleAnimation(){
         System.out.println("Running InkyIdleAnimation in overlayManager");
         ImageView im = (ImageView) inkyOverlay.get().mView.findViewById(R.id.inky_overlay);
+        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) im.getLayoutParams();
+        params.gravity = Gravity.BOTTOM | Gravity.END;
+        params.width = 900;
+        params.height = 900;
+        params.rightMargin = -200;
+        params.bottomMargin = -200;
+        im.setLayoutParams(params);
         inkyOverlayIdleGif.stop();
         inkyOverlayIdleGif.reset();
         inkyOverlayIdleGif.setSpeed(movementSpeed);
@@ -91,16 +100,24 @@ public class OverlayManager extends AppCompatActivity {
         System.out.println("Running InkyWalkingAnimation in overlayManager");
         ImageView im = (ImageView) inkyOverlay.get().mView.findViewById(R.id.inky_overlay);
         im.setImageDrawable(inkyOverlayIntroGif);
-        inkyOverlayIntroGif.setSpeed(movementSpeed);
+        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) im.getLayoutParams();
+        params.width = FrameLayout.LayoutParams.MATCH_PARENT;
+        params.height = FrameLayout.LayoutParams.MATCH_PARENT;
+        params.gravity = Gravity.CENTER;
+        params.bottomMargin = -300;
+        params.rightMargin = 0;
+        im.setLayoutParams(params);
         inkyOverlayIntroGif.reset();
         inkyOverlayIdleGif.start();
         inkyOverlay.get().Open();
+        inkyOverlayIntroGif.setSpeed(movementSpeed);
         System.out.println("Complete InkyWalkingAnimation in overlayManager");
+
     }
+
 
     public static void InkyClose(){
         inkyOverlay.get().Close();
     }
-
 
 }

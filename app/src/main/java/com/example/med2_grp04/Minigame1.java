@@ -90,7 +90,7 @@ public class Minigame1 extends AppCompatActivity {
                     }
                 }
 
-               board[r][c].neighborMines = count;
+                board[r][c].neighborMines = count;
             }
         }
     }
@@ -183,8 +183,6 @@ public class Minigame1 extends AppCompatActivity {
 
         String message = win ? "You win!!" : "Game Over..";
 
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
-
         for (int r = 0; r < gridSize; r++){
             for (int c = 0; c < gridSize; c++){
 
@@ -193,6 +191,30 @@ public class Minigame1 extends AppCompatActivity {
                 }
             }
         }
+        androidx.appcompat.app.AlertDialog.Builder builder =
+                new androidx.appcompat.app.AlertDialog.Builder(this);
+
+        builder.setTitle(message);
+
+        builder.setMessage("What do you want to do?");
+
+        builder.setCancelable(false);
+
+        builder.setPositiveButton("Continue",
+                (dialog, which) -> {
+
+                    InstigateGames.isMinigameActive = false;
+
+                    finish();
+                });
+
+        builder.setNegativeButton("Replay",
+                (dialog, which) -> {
+
+                    recreate();
+                });
+
+        builder.show();
     }
 
     private void checkWin() {
@@ -201,7 +223,7 @@ public class Minigame1 extends AppCompatActivity {
             for (int c = 0; c < gridSize; c++){
 
                 if (!board[r][c].isMine &&
-                    !board[r][c].isRevealed){
+                        !board[r][c].isRevealed){
                     return;
                 }
             }
