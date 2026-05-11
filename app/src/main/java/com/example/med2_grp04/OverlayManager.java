@@ -85,6 +85,7 @@ public class OverlayManager extends AppCompatActivity {
         inkyOverlaySleepingGif.setSpeed(movementSpeed);
         im.setImageDrawable(inkyOverlaySleepingGif);
         inkyOverlaySleepingGif.start();
+        inkyOverlay.get().Open();
         System.out.println("Complete InkySleepingAnimation in overlayManager");
     }
 

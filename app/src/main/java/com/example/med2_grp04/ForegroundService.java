@@ -81,6 +81,7 @@ public class ForegroundService extends Service {
                 System.out.println("Running IsResticted in ForegroundService");
                 Log.d("RESTRICTED", "Show Overlay");
                 if(Settings_Options.isNightMode(ForegroundService.this) == true){
+                    Log.d("", "Nightmode should be working");
                     OverlayManager.InkySleepingAnimation();
                 } else {
                 OverlayManager.InkyIntroAnimation();
