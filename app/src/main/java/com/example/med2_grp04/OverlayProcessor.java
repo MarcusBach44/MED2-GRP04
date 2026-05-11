@@ -6,14 +6,10 @@ import android.util.Log;
 import android.widget.ImageView;
 
 public class OverlayProcessor {
-    private float InkyVelocityX = 0;
-    private float InkyVelocityY = 0;
-    private float gravity = 3f;
-
-
     public void InkyIntroToIdle(long AmountOfTime) {
         long Milisecounds = AmountOfTime * 1000;
         final long[] ExtraTime = new long[1];
+        InkyIsIntro();
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -52,6 +48,20 @@ public class OverlayProcessor {
             }
         }, Milisecounds);
     }
+
+    public void InkyIsSleeping(){
+        OverlayManager.InkySleepingAnimation();
+    }
+
+    public void InkyIsIntro(){
+        OverlayManager.InkyIntroAnimation();
+    }
+
+    public void InkyIsClose(){
+        OverlayManager.InkyClose();
+    }
+
+
 
 }
 

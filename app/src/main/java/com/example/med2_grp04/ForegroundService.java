@@ -82,9 +82,8 @@ public class ForegroundService extends Service {
                 Log.d("RESTRICTED", "Show Overlay");
                 if(Settings_Options.isNightMode(ForegroundService.this) == true){
                     Log.d("", "Nightmode should be working");
-                    OverlayManager.InkySleepingAnimation();
+                    overlayProcessor.InkyIsSleeping();
                 } else {
-                OverlayManager.InkyIntroAnimation();
                 overlayProcessor.InkyIntroToIdle(12);
                 }
                 System.out.println("Completing IsResticted in ForegroundService");
@@ -96,7 +95,7 @@ public class ForegroundService extends Service {
                     System.out.println("Running IsNotResticted in ForegroundService");
                     Log.d("NOT RESTRICTED", "Hide Overlay");
                     OverlayManager.CloseInkOverlay();
-                    OverlayManager.InkyClose();
+                    overlayProcessor.InkyIsClose();
                     System.out.println("Completing IsNotResticted in ForegroundService");
                 }
             }
