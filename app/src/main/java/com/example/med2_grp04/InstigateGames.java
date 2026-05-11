@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class InstigateGames {
 
