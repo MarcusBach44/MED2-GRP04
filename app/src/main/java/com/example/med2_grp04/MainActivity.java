@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
             OverlayManager.inkyOverlayIntroGif = new GifDrawable(getResources(), R.drawable.inky_walkingintro);
             OverlayManager.inkyOverlayIntroGif.reset();
 
-
             System.out.println("Completing onCreate in main");
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -98,7 +97,9 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btnSettings).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Change();
+                Intent intent = new Intent(MainActivity.this, Settings_Options.class);
+                intent.setFlags(FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
             }
         });
 
