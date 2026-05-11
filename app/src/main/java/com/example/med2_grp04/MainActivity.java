@@ -21,35 +21,33 @@ import pl.droidsonroids.gif.GifDrawable;
 
 public class MainActivity extends AppCompatActivity {
     public static boolean isOverlayActive = false;
-    //private static WeakReference<Window> overlay;
-    Button ToSettings_options;
     OverlayProcessor overlayProcessor = new OverlayProcessor();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-      //  setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
             });
-        ToSettings_options = findViewById(R.id.ToSettings_options);
 
-        ToSettings_options.setOnClickListener(v1 -> {
-
-            startActivity(new Intent(
-                    MainActivity.this,
-                    Settings_Options.class));
-
+        findViewById(R.id.ToSettings_options).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Settings_Options.class);
+                intent.setFlags(FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
+            }
         });
-
 
          findViewById(R.id.btnBrainBreak).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, brainbreak.class);
+                intent.setFlags(FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
             }
         });
