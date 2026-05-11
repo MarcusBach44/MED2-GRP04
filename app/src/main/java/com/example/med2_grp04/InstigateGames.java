@@ -85,13 +85,11 @@ public class InstigateGames {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
-            layoutType =
-                    WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+            layoutType = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
 
         } else {
 
-            layoutType =
-                    WindowManager.LayoutParams.TYPE_PHONE;
+            layoutType = WindowManager.LayoutParams.TYPE_PHONE;
         }
 
         WindowManager.LayoutParams params =
@@ -114,14 +112,12 @@ public class InstigateGames {
         params.x = 50;
         params.y = 300;
 
-        LayoutInflater inflater =
-                LayoutInflater.from(context);
+        LayoutInflater inflater = LayoutInflater.from(context);
 
         if (popupView == null) {
 
             popupView =
-                    inflater.inflate(R.layout.popup_minigame,
-                            null);
+                    inflater.inflate(R.layout.popup_minigame, null);
 
             Button playButton =
                     popupView.findViewById(R.id.playButton);
@@ -133,43 +129,30 @@ public class InstigateGames {
                 Random random = new Random();
 
                 String selectedGame =
-                        enabledGames.get(
-                                random.nextInt(enabledGames.size()));
+                        enabledGames.get(random.nextInt(enabledGames.size()));
 
                 Intent intent;
 
                 switch (selectedGame) {
 
                     case "TicTacToe":
-
-                        intent = new Intent(
-                                context,
-                                TicTacToe.class);
+                        intent = new Intent(context, TicTacToe.class);
                         break;
 
                     case "MineSweeper":
-
-                        intent = new Intent(
-                                context,
-                                Minigame1.class);
+                        intent = new Intent(context, Minigame1.class);
                         break;
 
                     case "Wordle":
-
-                        intent = new Intent(
-                                Intent.ACTION_VIEW,
-                                android.net.Uri.parse(
-                                        "https://wordleunlimited.org/"));
+                        intent = new Intent(Intent.ACTION_VIEW,
+                                android.net.Uri.parse("https://wordleunlimited.org/"));
                         break;
 
                     case "Sudoku":
 
-                        intent = new Intent(
-                                Intent.ACTION_VIEW,
-                                android.net.Uri.parse(
-                                        "https://sudoku.com/"));
+                        intent = new Intent(Intent.ACTION_VIEW,
+                                android.net.Uri.parse("https://sudoku.com/"));
                         break;
-
                     default:
                         return;
                 }
@@ -226,22 +209,18 @@ public class InstigateGames {
                 prefs.getString("active_games", "");
 
         if (settingsString.contains("TicTacToe")) {
-
             enabledGames.add("TicTacToe");
         }
 
         if (settingsString.contains("MineSweeper")) {
-
             enabledGames.add("MineSweeper");
         }
 
         if (settingsString.contains("Wordle")) {
-
             enabledGames.add("Wordle");
         }
 
         if (settingsString.contains("Sudoku")) {
-
             enabledGames.add("Sudoku");
         }
 
