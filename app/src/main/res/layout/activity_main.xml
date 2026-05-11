@@ -96,17 +96,21 @@
         android:id="@+id/inkyhomepage"
         android:layout_width="294dp"
         android:layout_height="328dp"
+        android:layout_marginStart="58dp"
+        android:layout_marginTop="-30dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TitleText"
-        app:srcCompat="@drawable/inkyhomepage"
-        tools:layout_editor_absoluteX="58dp" />
+        app:srcCompat="@drawable/inkyhomepage" />
 
     <ImageView
         android:id="@+id/shadow"
         android:layout_width="215dp"
         android:layout_height="167dp"
+        android:layout_marginStart="95dp"
+        android:layout_marginTop="-170dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inkyhomepage"
-        app:srcCompat="@drawable/circleshadow"
-        tools:layout_editor_absoluteX="98dp" />
+        app:srcCompat="@drawable/circleshadow" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
