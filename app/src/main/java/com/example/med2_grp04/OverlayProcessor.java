@@ -18,14 +18,14 @@ public class OverlayProcessor {
             @Override
             public void run() {
                 Log.d("", "DurractionIdle Is Calculated" + OverlayManager.inkyOverlayIntroGif.getDuration());
-                long frames = 24 - OverlayManager.inkyOverlayIntroGif.getCurrentFrameIndex() + 2;
+                long frames = 24 - OverlayManager.inkyOverlayIntroGif.getCurrentFrameIndex()/2 - 1;
                 ExtraTime[0] = 300 * frames;
 
                 new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         OverlayManager.InkyIdleAnimation();
-                        InkyIdleToFrustrated(480);
+                        InkyIdleToFrustrated(1);
                     }
                 }, ExtraTime[0]);
             }

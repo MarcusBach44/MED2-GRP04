@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                     OverlayManager.OpenInkOverlay();
                     OverlayManager.CloseInkOverlay();
                     OverlayManager.InkyIntroAnimation();
-                    overlayProcessor.InkyIntroToIdle(1);
+                    overlayProcessor.InkyIntroToIdle(12);
 
                     System.out.println("Completing onClick if statement in MainActivity");
                 } else{

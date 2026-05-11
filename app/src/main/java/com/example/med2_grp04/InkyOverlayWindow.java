@@ -21,8 +21,6 @@ public class InkyOverlayWindow {
         this.context=context;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             mParams = new WindowManager.LayoutParams(
-                    WindowManager.LayoutParams.MATCH_PARENT,
-                    WindowManager.LayoutParams.MATCH_PARENT,
                     WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
                     WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                     PixelFormat.TRANSLUCENT
