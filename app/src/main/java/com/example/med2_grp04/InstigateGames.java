@@ -10,6 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.content.SharedPreferences;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class InstigateGames {
 
@@ -22,6 +25,9 @@ public class InstigateGames {
     private View popupView;
 
     private Handler handler = new Handler();
+
+    private ArrayList<Class<?>> enabledGames =
+            new ArrayList<>();
 
     public static String currentPackage = "";
 
@@ -61,6 +67,12 @@ public class InstigateGames {
         }
 
         if (!ForegroundService.restrictedApps.contains(currentPackage)) {
+            return;
+        }
+
+        refreshEnabledGames();
+
+        if (enabledGames.isEmpty()) {
             return;
         }
 
@@ -118,9 +130,15 @@ public class InstigateGames {
 
                 isMinigameActive = true;
 
+                Random random = new Random();
+
+                Class<?> selectedGame =
+                        enabledGames.get(
+                                random.nextInt(enabledGames.size()));
+
                 Intent intent =
                         new Intent(context,
-                                TicTacToe.class);
+                                selectedGame);
 
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
                         | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
@@ -149,6 +167,29 @@ public class InstigateGames {
 
             } catch (Exception ignored) {
             }
+        }
+    }
+
+    private void refreshEnabledGames() {
+
+        enabledGames.clear();
+
+        SharedPreferences prefs =
+                context.getSharedPreferences(
+                        "BrainBreakPrefs",
+                        Context.MODE_PRIVATE);
+
+        String settingsString =
+                prefs.getString("active_games", "");
+
+        if (settingsString.contains("TicTacToe")) {
+
+            enabledGames.add(TicTacToe.class);
+        }
+
+        if (settingsString.contains("MineSweeper")) {
+
+            enabledGames.add(Minigame1.class);
         }
     }
 }
