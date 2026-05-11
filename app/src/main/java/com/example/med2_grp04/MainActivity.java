@@ -81,18 +81,17 @@ public class MainActivity extends AppCompatActivity {
                 isOverlayActive = !isOverlayActive;
                 if (isOverlayActive){
                     if(Settings_Options.isNightMode(MainActivity.this) == true){
-                        OverlayManager.InkySleepingAnimation();
+                        overlayProcessor.InkyIsSleeping();
                     } else {
                         OverlayManager.OpenInkOverlay();
                         OverlayManager.CloseInkOverlay();
-                        OverlayManager.InkyIntroAnimation();
                         overlayProcessor.InkyIntroToIdle(12);
                     }
 
                     System.out.println("Completing onClick if statement in MainActivity");
                 } else{
                     OverlayManager.CloseInkOverlay();
-                    OverlayManager.InkyClose();
+                    overlayProcessor.InkyIsClose();
                     System.out.println("Completing onClick else statement in MainActivity");
                 }
             }
