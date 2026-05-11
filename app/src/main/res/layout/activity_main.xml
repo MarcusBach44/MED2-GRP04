@@ -16,18 +16,17 @@
         android:layout_marginHorizontal="24dp"
         android:layout_marginStart="89dp"
         android:layout_marginEnd="89dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="24dp"
         android:backgroundTint="#000"
+        android:fontFamily="@font/poppins_semibold"
         android:text="Brain Break"
         android:textColor="@color/white"
         android:textSize="24sp"
         app:icon="@drawable/controller"
+        android:iconSize="40dp"
         app:layout_constraintBottom_toTopOf="@+id/btnSettings"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    
-
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -38,12 +37,13 @@
         android:layout_marginEnd="89dp"
         android:layout_marginBottom="37dp"
         android:backgroundTint="@color/lightgrey"
+        android:fontFamily="@font/poppins_semibold"
         android:text="Settings"
         android:textColor="#000000"
-        android:textSize="24sp"
+        android:textSize="26sp"
         app:icon="@drawable/settings"
         app:iconPadding="0dp"
-        app:iconSize="50dp"
+        app:iconSize="24dp"
         app:iconTint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,16 +66,16 @@
         android:layout_height="wrap_content"
 
         android:layout_marginEnd="-257dp"
-        android:layout_marginBottom="356dp"
-        android:fontFamily="sans-serif-medium"
+        android:layout_marginBottom="280dp"
+        android:fontFamily="@font/poppins_semibold"
         android:text="Inkur"
         android:textAlignment="center"
         android:textColor="#000"
-        android:textSize="48sp"
-        android:textStyle="bold"
+        android:textSize="70sp"
+        android:textStyle="bold|italic"
         app:layout_constraintBottom_toTopOf="@+id/btnSwitch"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.267"
+        app:layout_constraintHorizontal_bias="0.23"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Switch
@@ -83,8 +83,8 @@
         android:layout_width="74dp"
         android:layout_height="57dp"
         android:layout_centerInParent="true"
-        android:layout_marginEnd="168dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="176dp"
+        android:layout_marginBottom="40dp"
         android:checked="false"
         android:scaleX="1.5"
         android:scaleY="1.5"
@@ -93,14 +93,21 @@
         app:layout_constraintBottom_toTopOf="@+id/btnBrainBreak"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
-        android:id="@+id/ToSettings_options"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="124dp"
-        android:layout_marginTop="504dp"
-        android:text="Settings_Options"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/inkyhomepage"
+        android:layout_width="294dp"
+        android:layout_height="328dp"
+        app:srcCompat="@drawable/inkyhomepage"
+        tools:layout_editor_absoluteX="58dp"
+        tools:layout_editor_absoluteY="99dp" />
+
+    <ImageView
+        android:id="@+id/shadow"
+        android:layout_width="215dp"
+        android:layout_height="167dp"
+        app:srcCompat="@drawable/circleshadow"
+        tools:layout_editor_absoluteX="98dp"
+        tools:layout_editor_absoluteY="260dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
