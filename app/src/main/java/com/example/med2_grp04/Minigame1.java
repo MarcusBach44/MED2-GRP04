@@ -119,9 +119,7 @@ public class Minigame1 extends AppCompatActivity {
                 params.setMargins(2, 2, 2, 2);
 
                 button.setLayoutParams(params);
-
                 button.setOnClickListener(v -> revealTile(finalR, finalC));
-
                 button.setOnLongClickListener(v -> {
 
                     if (!board[finalR][finalC].isRevealed) {
@@ -194,11 +192,8 @@ public class Minigame1 extends AppCompatActivity {
                 new androidx.appcompat.app.AlertDialog.Builder(this);
 
         builder.setTitle(message);
-
         builder.setMessage("What do you want to do?");
-
         builder.setCancelable(false);
-
         builder.setPositiveButton("Continue",
                 (dialog, which) -> {
 

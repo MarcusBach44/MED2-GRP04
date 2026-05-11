@@ -119,8 +119,7 @@ public class InstigateGames {
             popupView =
                     inflater.inflate(R.layout.popup_minigame, null);
 
-            Button playButton =
-                    popupView.findViewById(R.id.playButton);
+            Button playButton = popupView.findViewById(R.id.playButton);
 
             playButton.setOnClickListener(v -> {
 
@@ -128,8 +127,7 @@ public class InstigateGames {
 
                 Random random = new Random();
 
-                String selectedGame =
-                        enabledGames.get(random.nextInt(enabledGames.size()));
+                String selectedGame = enabledGames.get(random.nextInt(enabledGames.size()));
 
                 Intent intent;
 
@@ -165,10 +163,7 @@ public class InstigateGames {
                         selectedGame.equals("Sudoku")) {
 
                     handler.postDelayed(() -> {
-
-                        isMinigameActive = false;
-
-                    }, 120000);
+                        isMinigameActive = false;}, 120000);
                 }
 
                 removePopup();

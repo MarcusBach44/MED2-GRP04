@@ -97,7 +97,6 @@ public class TicTacToe extends AppCompatActivity {
 
             board[r][c].value = "X";
             buttons[r][c].setText("X");
-
             playerTurn = false;
 
             checkWin();
@@ -247,9 +246,7 @@ public class TicTacToe extends AppCompatActivity {
                 new AlertDialog.Builder(this);
 
         builder.setTitle("Draw");
-
         builder.setMessage("Nobody wins!");
-
         builder.setCancelable(false);
 
         builder.setPositiveButton("Continue",
