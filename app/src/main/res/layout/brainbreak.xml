@@ -5,38 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="414dp"
-        android:layout_height="60dp"
-        android:background="@color/lightgrey"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
-
     <TextView
         android:id="@+id/BrainBreak"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/black_han_sans"
+        android:layout_marginTop="26dp"
+        android:fontFamily="@font/poppins_semibold"
         android:gravity="center"
         android:text="Brain Breaks"
         android:textColor="@color/black"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/btnBackArrow"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="25dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="Back arrow"
         android:scaleX="1.5"
@@ -51,14 +38,14 @@
         android:layout_width="128dp"
         android:layout_height="121dp"
         android:layout_marginStart="52dp"
-        android:layout_marginTop="136dp"
+        android:layout_marginTop="100dp"
         android:backgroundTint="@color/grey"
         android:contentDescription="TicTacToe button"
         android:scaleType="centerCrop"
-        app:tint="#96646464"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/tictactoe" />
+        app:srcCompat="@drawable/tictactoe"
+        app:tint="#96646464" />
 
     <TextView
         android:id="@+id/TicTacToe"
@@ -66,8 +53,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/poppins_semibold"
         android:gravity="center"
         android:text="TicTacToe"
+        android:textColor="@color/black"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,7 +67,7 @@
         android:layout_width="128dp"
         android:layout_height="121dp"
         android:layout_marginStart="232dp"
-        android:layout_marginTop="136dp"
+        android:layout_marginTop="100dp"
         android:backgroundTint="@color/grey"
         android:contentDescription="Minesweeper button"
         android:scaleType="centerCrop"
@@ -86,14 +75,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/minesweeper"
         app:tint="#96646464" />
+
     <TextView
         android:id="@+id/MineSweeper"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="252dp"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/poppins_semibold"
         android:gravity="center"
         android:text="Minesweeper"
+        android:textColor="@color/black"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -104,14 +96,14 @@
         android:layout_width="128dp"
         android:layout_height="121dp"
         android:layout_marginStart="52dp"
-        android:layout_marginTop="296dp"
+        android:layout_marginTop="260dp"
         android:backgroundTint="@color/grey"
         android:contentDescription="Wordle button"
         android:scaleType="centerCrop"
-        app:tint="#96646464"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/wordle" />
+        app:srcCompat="@drawable/wordle"
+        app:tint="#96646464" />
 
     <TextView
         android:id="@+id/Wordle"
@@ -119,8 +111,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="92dp"
         android:layout_marginTop="4dp"
+        android:fontFamily="@font/poppins_semibold"
         android:gravity="center"
         android:text="Wordle"
+        android:textColor="@color/black"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -131,7 +125,7 @@
         android:layout_width="128dp"
         android:layout_height="121dp"
         android:layout_marginStart="232dp"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="260dp"
         android:backgroundTint="@color/grey"
         android:contentDescription="Sudoku button"
         android:scaleType="centerCrop"
@@ -145,8 +139,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="268dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/poppins_semibold"
         android:gravity="center"
         android:text="Sudoku"
+        android:textColor="@color/black"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"

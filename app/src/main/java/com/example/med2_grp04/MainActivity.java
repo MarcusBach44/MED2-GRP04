@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,7 +21,7 @@ import pl.droidsonroids.gif.GifDrawable;
 
 public class MainActivity extends AppCompatActivity {
     public static boolean isOverlayActive = false;
-
+    OverlayProcessor overlayProcessor = new OverlayProcessor();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,26 +32,54 @@ public class MainActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+            });
+
+        findViewById(R.id.ToSettings_options).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Settings_Options.class);
+                intent.setFlags(FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
+            }
         });
+
          findViewById(R.id.btnBrainBreak).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, brainbreak.class);
+                intent.setFlags(FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
             }
         });
+
 
         CheckOverlayPermission();
         CheckAccessibilityPermission();
         StartService();
 
         try {
+            System.out.println("Running onCreate in main");
             OverlayManager.inkOverlayGif = new GifDrawable(getResources(), R.drawable.ink_screen_overlay);
             OverlayManager.inkOverlayGif.reset();
 
             OverlayManager.inkOverlayReverseGif = new GifDrawable(getResources(), R.drawable.ink_screen_overlay_reverse);
             OverlayManager.inkOverlayReverseGif.reset();
             OverlayManager.inkOverlayReverseGif.seekToFrame(47);
+
+            OverlayManager.inkyOverlayIdleGif = new GifDrawable(getResources(), R.drawable.inky_idle);
+            OverlayManager.inkyOverlayIdleGif.reset();
+
+            OverlayManager.inkyOverlaySleepingGif = new GifDrawable(getResources(), R.drawable.inky_sleeping);
+            OverlayManager.inkyOverlaySleepingGif.reset();
+
+            OverlayManager.inkyOverlayFrustratedGif = new GifDrawable(getResources(), R.drawable.inky_angry);
+            OverlayManager.inkyOverlayFrustratedGif.reset();
+
+            OverlayManager.inkyOverlayIntroGif = new GifDrawable(getResources(), R.drawable.inky_walkingintro);
+            OverlayManager.inkyOverlayIntroGif.reset();
+
+
+            System.out.println("Completing onCreate in main");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -59,13 +88,21 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btnSwitch).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                System.out.println("Running onClick in MainActivity");
                 isOverlayActive = !isOverlayActive;
                 if (isOverlayActive){
                     OverlayManager.OpenInkOverlay();
                     OverlayManager.CloseInkOverlay();
+                    OverlayManager.InkyIntroAnimation();
+                    overlayProcessor.InkyIntroToIdle(1);
+
+                    System.out.println("Completing onClick if statement in MainActivity");
                 } else{
                     OverlayManager.CloseInkOverlay();
+                    OverlayManager.InkyClose();
+                    System.out.println("Completing onClick else statement in MainActivity");
                 }
+
             }
 
         });
@@ -147,4 +184,5 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "FUCK", Toast.LENGTH_SHORT).show();
         return super.onSupportNavigateUp();
     }
+
 }

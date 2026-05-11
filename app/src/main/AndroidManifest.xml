@@ -21,6 +21,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MED2GRP04">
+        <activity
+            android:name=".Minigame1"
+            android:exported="true" />
 
         <activity
             android:name=".TicTacToe"
@@ -29,6 +32,10 @@
 
         <activity
             android:name=".SettingsRestrictedApps"/>
+
+        <activity
+            android:name=".Settings_Options"/>
+
         <activity
             android:name=".ViewAllApps"/>
 
@@ -53,14 +60,12 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
+
         <activity android:name=".brainbreak" android:exported="false" />
 
         <meta-data

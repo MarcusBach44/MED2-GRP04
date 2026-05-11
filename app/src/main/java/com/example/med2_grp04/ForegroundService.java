@@ -24,6 +24,8 @@ import java.util.List;
 public class ForegroundService extends Service {
     private InkOverlayWindow inkOverlayWindow;
     static public ArrayList<String> restrictedApps = new ArrayList<String>();
+    private InkyOverlayWindow InkyOverlay;
+    private OverlayProcessor overlayProcessor;
     public ForegroundService() {
     }
     @Nullable @Override
@@ -49,6 +51,12 @@ public class ForegroundService extends Service {
         }
         inkOverlayWindow = new InkOverlayWindow(this);
         OverlayManager.updateInkOverlayWindow(inkOverlayWindow);
+
+        overlayProcessor = new OverlayProcessor();
+
+
+        InkyOverlay = new InkyOverlayWindow(this);
+        OverlayManager.updateOverlayInkyWindow(InkyOverlay);
     }
 
     @Override
@@ -70,14 +78,21 @@ public class ForegroundService extends Service {
                 return;
             }
             if (isRestricted(pkg)){
+                System.out.println("Running IsResticted in ForegroundService");
                 Log.d("RESTRICTED", "Show Overlay");
-                OverlayManager.OpenInkOverlay();
+                OverlayManager.InkyIntroAnimation();
+                overlayProcessor.InkyIntroToIdle(24);
+                System.out.println("Completing IsResticted in ForegroundService");
             } else {
                 if (restrictedApps.contains(DetectAppChanges.previousApp)){
                     OverlayManager.OpenInkOverlay();
                 }else {
                     Log.d("NOT RESTRICTED", "Hide Overlay");
+                    System.out.println("Running IsNotResticted in ForegroundService");
+                    Log.d("NOT RESTRICTED", "Hide Overlay");
                     OverlayManager.CloseInkOverlay();
+                    OverlayManager.InkyClose();
+                    System.out.println("Completing IsNotResticted in ForegroundService");
                 }
             }
         }
