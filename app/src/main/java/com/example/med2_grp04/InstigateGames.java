@@ -147,7 +147,6 @@ public class InstigateGames {
                         break;
 
                     case "Sudoku":
-
                         intent = new Intent(Intent.ACTION_VIEW,
                                 android.net.Uri.parse("https://sudoku.com/"));
                         break;
