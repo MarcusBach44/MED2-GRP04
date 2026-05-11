@@ -34,15 +34,6 @@ public class MainActivity extends AppCompatActivity {
             return insets;
             });
 
-        findViewById(R.id.ToSettings_options).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Settings_Options.class);
-                intent.setFlags(FLAG_ACTIVITY_REORDER_TO_FRONT);
-                startActivity(intent);
-            }
-        });
-
          findViewById(R.id.btnBrainBreak).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
         CheckOverlayPermission();
         CheckAccessibilityPermission();
@@ -102,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
                     OverlayManager.InkyClose();
                     System.out.println("Completing onClick else statement in MainActivity");
                 }
-
             }
 
         });
@@ -144,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean isAccessibilityEnabled(Context context) {
         String service = context.getPackageName() + "/" + DetectAppChanges.class.getCanonicalName();
 
-        int enabled = 0;
+        int enabled;
         try {
             enabled = Settings.Secure.getInt(
                     context.getContentResolver(),
@@ -178,11 +167,4 @@ public class MainActivity extends AppCompatActivity {
             startService(new Intent(this, ForegroundService.class));
         }
     }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        Toast.makeText(this, "FUCK", Toast.LENGTH_SHORT).show();
-        return super.onSupportNavigateUp();
-    }
-
 }
