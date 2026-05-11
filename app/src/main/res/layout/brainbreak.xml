@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="414dp"
+        android:layout_height="60dp"
+        android:background="@color/lightgrey"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/BrainBreak"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/black_han_sans"
+        android:gravity="center"
+        android:text="Brain Breaks"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageButton
+        android:id="@+id/btnBackArrow"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="68dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Back arrow"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="?attr/actionModeCloseDrawable"
+        app:tint="@color/black" />
+
+    <ImageButton
+        android:id="@+id/btnTicTacToe"
+        android:layout_width="128dp"
+        android:layout_height="121dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="136dp"
+        android:backgroundTint="@color/grey"
+        android:contentDescription="TicTacToe button"
+        android:scaleType="centerCrop"
+        app:tint="#96646464"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/tictactoe" />
+
+    <TextView
+        android:id="@+id/TicTacToe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="TicTacToe"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnTicTacToe" />
+
+    <ImageButton
+        android:id="@+id/btnMineSweeper"
+        android:layout_width="128dp"
+        android:layout_height="121dp"
+        android:layout_marginStart="232dp"
+        android:layout_marginTop="136dp"
+        android:backgroundTint="@color/grey"
+        android:contentDescription="Minesweeper button"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/minesweeper"
+        app:tint="#96646464" />
+    <TextView
+        android:id="@+id/MineSweeper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="252dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="Minesweeper"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnMineSweeper" />
+
+    <ImageButton
+        android:id="@+id/btnWordle"
+        android:layout_width="128dp"
+        android:layout_height="121dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="296dp"
+        android:backgroundTint="@color/grey"
+        android:contentDescription="Wordle button"
+        android:scaleType="centerCrop"
+        app:tint="#96646464"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/wordle" />
+
+    <TextView
+        android:id="@+id/Wordle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:text="Wordle"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnWordle" />
+
+    <ImageButton
+        android:id="@+id/btnSudoku"
+        android:layout_width="128dp"
+        android:layout_height="121dp"
+        android:layout_marginStart="232dp"
+        android:layout_marginTop="300dp"
+        android:backgroundTint="@color/grey"
+        android:contentDescription="Sudoku button"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/sudoku"
+        app:tint="#96646464" />
+
+    <TextView
+        android:id="@+id/Sudoku"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="268dp"
+        android:gravity="center"
+        android:text="Sudoku"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSudoku" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
