@@ -25,7 +25,7 @@ public class OverlayProcessor {
                     @Override
                     public void run() {
                         OverlayManager.InkyIdleAnimation();
-                        InkyIdleToFrustrated(1);
+                        InkyIdleToFrustrated(480);
                     }
                 }, ExtraTime[0]);
             }

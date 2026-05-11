@@ -80,8 +80,12 @@ public class ForegroundService extends Service {
             if (isRestricted(pkg)){
                 System.out.println("Running IsResticted in ForegroundService");
                 Log.d("RESTRICTED", "Show Overlay");
+                if(Settings_Options.isNightMode(ForegroundService.this) == true){
+                    OverlayManager.InkySleepingAnimation();
+                } else {
                 OverlayManager.InkyIntroAnimation();
                 overlayProcessor.InkyIntroToIdle(12);
+                }
                 System.out.println("Completing IsResticted in ForegroundService");
             } else {
                 if (restrictedApps.contains(DetectAppChanges.previousApp)){

@@ -20,7 +20,7 @@ public class OverlayManager extends AppCompatActivity {
 
     public static float inkSpreadSpeed = 0.05f;
     public static float inkRecoveryRate = 0.05f;
-    public static float movementSpeed = 5.0f;
+    public static float movementSpeed = 5f;
     private static WeakReference<InkOverlayWindow> inkOverlay;
     public static WeakReference<InkyOverlayWindow> inkyOverlay;
 
@@ -73,6 +73,13 @@ public class OverlayManager extends AppCompatActivity {
     public static void InkySleepingAnimation(){
         System.out.println("Running InkySleepingAnimation in overlayManager");
         ImageView im = (ImageView) inkyOverlay.get().mView.findViewById(R.id.inky_overlay);
+        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) im.getLayoutParams();
+        params.gravity = Gravity.BOTTOM | Gravity.END;
+        params.width = 900;
+        params.height = 900;
+        params.rightMargin = -200;
+        params.bottomMargin = -200;
+        im.setLayoutParams(params);
         inkyOverlaySleepingGif.stop();
         inkyOverlaySleepingGif.reset();
         inkyOverlaySleepingGif.setSpeed(movementSpeed);
@@ -98,6 +105,7 @@ public class OverlayManager extends AppCompatActivity {
 
     public static void InkyIntroAnimation(){
         System.out.println("Running InkyWalkingAnimation in overlayManager");
+        inkyOverlayIntroGif.setSpeed(movementSpeed);
         ImageView im = (ImageView) inkyOverlay.get().mView.findViewById(R.id.inky_overlay);
         im.setImageDrawable(inkyOverlayIntroGif);
         FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) im.getLayoutParams();
@@ -110,7 +118,6 @@ public class OverlayManager extends AppCompatActivity {
         inkyOverlayIntroGif.reset();
         inkyOverlayIdleGif.start();
         inkyOverlay.get().Open();
-        inkyOverlayIntroGif.setSpeed(movementSpeed);
         System.out.println("Complete InkyWalkingAnimation in overlayManager");
 
     }
