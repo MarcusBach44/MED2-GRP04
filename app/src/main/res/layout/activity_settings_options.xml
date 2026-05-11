@@ -8,12 +8,25 @@
     tools:context=".Settings_Options">
 
 
+    <TextView
+        android:id="@+id/txtSettings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:gravity="center"
+        android:text="Settings"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageButton
         android:id="@+id/BackButton"
         android:layout_width="55dp"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="248dp"
+        android:layout_marginTop="25dp"
         android:backgroundTint="#FBF8F8"
         android:contentDescription="BackButton"
         android:scaleX="2"
@@ -40,11 +53,12 @@
         android:layout_width="233dp"
         android:layout_height="81dp"
         android:layout_marginStart="88dp"
-        android:layout_marginTop="324dp"
+        android:layout_marginTop="200dp"
         android:backgroundTint="#BFBBBB"
+        android:fontFamily="@font/poppins_semibold"
         android:text="Restricted apps"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,17 +67,17 @@
         android:layout_width="233dp"
         android:layout_height="81dp"
         android:layout_marginStart="88dp"
-        android:layout_marginTop="436dp"
+        android:layout_marginTop="320dp"
         android:backgroundTint="#BFBBBB"
+        android:fontFamily="@font/poppins_semibold"
         android:text="Sleep Time"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:textColor="@color/black"
-        android:textSize="24sp"
+        android:textSize="22sp"
         app:icon="@drawable/sleepmode"
         app:iconPadding="0dp"
         app:iconSize="50dp"
         app:iconTint="@color/black"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
