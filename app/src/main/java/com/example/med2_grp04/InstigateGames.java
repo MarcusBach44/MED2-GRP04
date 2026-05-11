@@ -26,7 +26,7 @@ public class InstigateGames {
 
     private Handler handler = new Handler();
 
-    private ArrayList<Class<?>> enabledGames =
+    private ArrayList<String> enabledGames =
             new ArrayList<>();
 
     public static String currentPackage = "";
@@ -132,18 +132,61 @@ public class InstigateGames {
 
                 Random random = new Random();
 
-                Class<?> selectedGame =
+                String selectedGame =
                         enabledGames.get(
                                 random.nextInt(enabledGames.size()));
 
-                Intent intent =
-                        new Intent(context,
-                                selectedGame);
+                Intent intent;
 
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                        | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                switch (selectedGame) {
+
+                    case "TicTacToe":
+
+                        intent = new Intent(
+                                context,
+                                TicTacToe.class);
+                        break;
+
+                    case "MineSweeper":
+
+                        intent = new Intent(
+                                context,
+                                Minigame1.class);
+                        break;
+
+                    case "Wordle":
+
+                        intent = new Intent(
+                                Intent.ACTION_VIEW,
+                                android.net.Uri.parse(
+                                        "https://wordleunlimited.org/"));
+                        break;
+
+                    case "Sudoku":
+
+                        intent = new Intent(
+                                Intent.ACTION_VIEW,
+                                android.net.Uri.parse(
+                                        "https://sudoku.com/"));
+                        break;
+
+                    default:
+                        return;
+                }
+
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
                 context.startActivity(intent);
+
+                if (selectedGame.equals("Wordle") ||
+                        selectedGame.equals("Sudoku")) {
+
+                    handler.postDelayed(() -> {
+
+                        isMinigameActive = false;
+
+                    }, 120000);
+                }
 
                 removePopup();
             });
@@ -184,12 +227,23 @@ public class InstigateGames {
 
         if (settingsString.contains("TicTacToe")) {
 
-            enabledGames.add(TicTacToe.class);
+            enabledGames.add("TicTacToe");
         }
 
         if (settingsString.contains("MineSweeper")) {
 
-            enabledGames.add(Minigame1.class);
+            enabledGames.add("MineSweeper");
         }
+
+        if (settingsString.contains("Wordle")) {
+
+            enabledGames.add("Wordle");
+        }
+
+        if (settingsString.contains("Sudoku")) {
+
+            enabledGames.add("Sudoku");
+        }
+
     }
 }

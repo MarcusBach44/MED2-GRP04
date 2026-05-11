@@ -103,9 +103,9 @@ public class TicTacToe extends AppCompatActivity {
             playerTurn = false;
 
             checkWin();
-           if (!gameEnded){
-               checkDraw();
-           }
+            if (!gameEnded){
+                checkDraw();
+            }
             if (!gameEnded){
                 botMove();
             }
@@ -275,4 +275,3 @@ public class TicTacToe extends AppCompatActivity {
         builder.show();
     }
 }
-
