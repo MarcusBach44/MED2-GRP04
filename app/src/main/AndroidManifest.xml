@@ -24,8 +24,6 @@
         <activity
             android:name=".Minigame1"
             android:exported="true" >
-            android:name=".Settings_Options"
-            android:exported="false" />
 
         <activity
             android:name=".TicTacToe"
