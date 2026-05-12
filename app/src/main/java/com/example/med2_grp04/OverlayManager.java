@@ -18,7 +18,7 @@ public class OverlayManager extends AppCompatActivity {
     public static GifDrawable inkyOverlaySleepingGif;
     public static GifDrawable inkyOverlayFrustratedGif;
 
-    public static float inkSpreadSpeed = 0.05f;
+    public static float inkSpreadSpeed = 0.01f;
     public static float inkRecoveryRate = 0.05f;
     public static float movementSpeed = 5f;
     private static WeakReference<InkOverlayWindow> inkOverlay;

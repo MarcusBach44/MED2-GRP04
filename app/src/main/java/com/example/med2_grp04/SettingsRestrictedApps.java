@@ -49,7 +49,7 @@ public class SettingsRestrictedApps extends AppCompatActivity {
 
     TextView valueRecoveryRate;
 
-    Context context=this;
+    Context context = this;
 
     @Override
     protected void onCreate (Bundle savedInstanceState)

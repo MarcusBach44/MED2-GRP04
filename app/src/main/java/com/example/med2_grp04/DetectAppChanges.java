@@ -7,8 +7,8 @@ import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 
 public class DetectAppChanges extends AccessibilityService {
-    private static String lastPackage;
-    public static  String previousApp;
+    public static String currentPackage;
+    public static String previousPackage;
     @Override
     public void onInterrupt() {}
 
@@ -21,15 +21,15 @@ public class DetectAppChanges extends AccessibilityService {
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
         if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED){
-            CharSequence pkgCs = event.getPackageName();
-            if (pkgCs == null) return;
+            CharSequence newPackageChar = event.getPackageName();
+            if (newPackageChar == null) return;
 
-            String pkg = pkgCs.toString();
-            if (!pkg.equals(lastPackage)){
-                previousApp = lastPackage;
-                lastPackage = pkg;
+            String newPackage = newPackageChar.toString();
+            if (!newPackage.equals(currentPackage)){
+                previousPackage = currentPackage;
+                currentPackage = newPackage;
                 Log.d("SCREEN CHANGE", "App Changed");
-                onAppChange(pkg);
+                onAppChange(currentPackage);
             }
         }
     }

@@ -20,7 +20,8 @@ import java.io.IOException;
 import pl.droidsonroids.gif.GifDrawable;
 
 public class MainActivity extends AppCompatActivity {
-    public static boolean isOverlayActive = false;
+    public static boolean isInkOverlayActive = false;
+    public static boolean isInkyActive = false;
     OverlayProcessor overlayProcessor = new OverlayProcessor();
 
     @Override
@@ -34,18 +35,12 @@ public class MainActivity extends AppCompatActivity {
             return insets;
             });
 
-         findViewById(R.id.btnBrainBreak).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, brainbreak.class);
-                intent.setFlags(FLAG_ACTIVITY_REORDER_TO_FRONT);
-                startActivity(intent);
-            }
-        });
-
         CheckOverlayPermission();
         CheckAccessibilityPermission();
         StartService();
+
+        //InstigateGames games = new InstigateGames(MainActivity.this);
+        //games.startPopupLoop();
 
         try {
             System.out.println("Running onCreate in main");
@@ -73,30 +68,46 @@ public class MainActivity extends AppCompatActivity {
             throw new RuntimeException(e);
         }
 
-
         findViewById(R.id.btnSwitch).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 System.out.println("Running onClick in MainActivity");
-                isOverlayActive = !isOverlayActive;
-                if (isOverlayActive){
-                    if(Settings_Options.isNightMode(MainActivity.this) == true){
-                        overlayProcessor.InkyIsSleeping();
-                    } else {
-                        OverlayManager.OpenInkOverlay();
-                        OverlayManager.CloseInkOverlay();
-                        overlayProcessor.InkyIntroToIdle(12);
-                    }
-
-                    System.out.println("Completing onClick if statement in MainActivity");
-                } else{
+                isInkOverlayActive = !isInkOverlayActive;
+                if (isInkOverlayActive){
+                    OverlayManager.OpenInkOverlay();
                     OverlayManager.CloseInkOverlay();
-                    overlayProcessor.InkyIsClose();
-                    System.out.println("Completing onClick else statement in MainActivity");
+                } else {
+                    OverlayManager.CloseInkOverlay();
                 }
             }
-
         });
+
+        findViewById(R.id.btnSwitchInky).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isInkyActive = !isInkyActive;
+                if (isInkyActive){
+                    if (Settings_Options.isNightMode(MainActivity.this)){
+                        overlayProcessor.InkyIsSleeping();
+                    } else {
+                        overlayProcessor.InkyIntroToIdle(12);
+                    }
+                } else {
+                    overlayProcessor.InkyIsClose();
+                }
+
+            }
+        });
+
+        findViewById(R.id.btnBrainBreak).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, brainbreak.class);
+                intent.setFlags(FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
+            }
+        });
+
         findViewById(R.id.btnSettings).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,18 +116,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        InstigateGames games =
-                new InstigateGames(MainActivity.this);
-
-        games.startPopupLoop();
-    }
-
-
-    public void Change(){
-        Intent intent = new Intent(this, SettingsRestrictedApps.class);
-        intent.setFlags(FLAG_ACTIVITY_REORDER_TO_FRONT);
-        startActivity(intent);
     }
 
     public void CheckOverlayPermission(){
