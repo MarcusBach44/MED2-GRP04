@@ -62,7 +62,6 @@ public class TicTacToe extends AppCompatActivity {
                 int finalC = c;
 
                 Button button = new Button(this);
-
                 button.setTextSize(32);
 
                 GridLayout.LayoutParams params =
@@ -76,7 +75,6 @@ public class TicTacToe extends AppCompatActivity {
                 params.setMargins(5,5,5,5);
 
                 button.setLayoutParams(params);
-
                 button.setOnClickListener(v -> makeMove(finalR, finalC));
 
                 buttons[r][c] = button;
@@ -99,7 +97,6 @@ public class TicTacToe extends AppCompatActivity {
 
             board[r][c].value = "X";
             buttons[r][c].setText("X");
-
             playerTurn = false;
 
             checkWin();
@@ -207,16 +204,13 @@ public class TicTacToe extends AppCompatActivity {
                 new AlertDialog.Builder(this);
 
         builder.setTitle("Game Over");
-
         builder.setMessage(winner + " wins!");
-
         builder.setCancelable(false);
 
         builder.setPositiveButton("Continue",
                 (dialog, which) -> {
 
                     InstigateGames.isMinigameActive = false;
-
                     finish();
                 });
 
@@ -236,7 +230,6 @@ public class TicTacToe extends AppCompatActivity {
             for (int c = 0; c < gridSize; c++) {
 
                 if (board[r][c].value.equals("")) {
-
                     return;
                 }
             }
@@ -253,22 +246,17 @@ public class TicTacToe extends AppCompatActivity {
                 new AlertDialog.Builder(this);
 
         builder.setTitle("Draw");
-
         builder.setMessage("Nobody wins!");
-
         builder.setCancelable(false);
 
         builder.setPositiveButton("Continue",
                 (dialog, which) -> {
-
                     InstigateGames.isMinigameActive = false;
-
                     finish();
                 });
 
         builder.setNegativeButton("Replay",
                 (dialog, which) -> {
-
                     recreate();
                 });
 
