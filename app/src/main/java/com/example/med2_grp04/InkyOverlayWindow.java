@@ -18,7 +18,7 @@ public class InkyOverlayWindow {
     private WindowManager mWindowManager;
     private LayoutInflater layoutInflater;
     public InkyOverlayWindow(Context context){
-        this.context=context;
+        this.context = context;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             mParams = new WindowManager.LayoutParams(
                     WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
