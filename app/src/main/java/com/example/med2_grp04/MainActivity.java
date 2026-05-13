@@ -86,16 +86,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 isInkyActive = !isInkyActive;
-                if (isInkyActive){
-                    if (Settings_Options.isNightMode(MainActivity.this)){
-                        overlayProcessor.InkyIsSleeping();
-                    } else {
-                        overlayProcessor.InkyIntroToIdle(12);
-                    }
-                } else {
-                    overlayProcessor.InkyIsClose();
-                }
-
+//                if (isInkyActive){
+//                    if (Settings_Options.isNightMode(MainActivity.this)){
+//                        overlayProcessor.InkyIsSleeping();
+//                    } else {
+//                        overlayProcessor.InkyIntroToIdle(12);
+//                    }
+//                } else {
+//                    overlayProcessor.InkyIsClose();
+//                }
             }
         });
 
@@ -111,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btnSettings).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Settings_Options.class);
+                Intent intent = new Intent(MainActivity.this, SettingsRestrictedApps.class);
                 intent.setFlags(FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
             }

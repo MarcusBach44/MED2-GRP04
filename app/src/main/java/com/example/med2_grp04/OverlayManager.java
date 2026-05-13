@@ -120,9 +120,7 @@ public class OverlayManager extends AppCompatActivity {
         inkyOverlayIdleGif.start();
         inkyOverlay.get().Open();
         System.out.println("Complete InkyWalkingAnimation in overlayManager");
-
     }
-
 
     public static void InkyClose(){
         inkyOverlay.get().Close();

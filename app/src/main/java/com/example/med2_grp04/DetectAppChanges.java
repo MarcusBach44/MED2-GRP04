@@ -25,6 +25,9 @@ public class DetectAppChanges extends AccessibilityService {
             if (newPackageChar == null) return;
 
             String newPackage = newPackageChar.toString();
+            Log.d("NEWPACKAGE", ""+newPackage);
+            Log.d("CURRENT", ""+currentPackage);
+            Log.d("PREVIOUS", ""+previousPackage);
             if (!newPackage.equals(currentPackage)){
                 previousPackage = currentPackage;
                 currentPackage = newPackage;

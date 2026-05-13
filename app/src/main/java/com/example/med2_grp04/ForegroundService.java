@@ -86,21 +86,20 @@ public class ForegroundService extends Service {
                 if (MainActivity.isInkOverlayActive){
                     OverlayManager.OpenInkOverlay();
                 }
-                //Check Inky
+                //Check Inky and
                 if (MainActivity.isInkyActive) {
+                    instigateGameWindow.startPopupLoop();
                     if (Settings_Options.isNightMode(ForegroundService.this)) {
                         overlayProcessor.InkyIsSleeping();
                     } else {
                         overlayProcessor.InkyIntroToIdle(12);
                     }
                 }
-                instigateGameWindow.startPopupLoop();
             } else {
                 //Check if the previous app was restricted, so it does not remove overlay when it shows itself
                 if (!isRestricted(DetectAppChanges.previousPackage)) {
                     Log.d("NOT RESTRICTED", "Hide Overlay");
-                    instigateGameWindow.cancelPopupLoop();
-                    instigateGameWindow.Close();
+
                     //Check Ink Overlay
                     if (MainActivity.isInkOverlayActive){
                         OverlayManager.CloseInkOverlay();
@@ -108,9 +107,10 @@ public class ForegroundService extends Service {
                     //Check Inky
                     if (MainActivity.isInkyActive){
                         overlayProcessor.InkyIsClose();
+                        instigateGameWindow.cancelPopupLoop();
+                        instigateGameWindow.Close();
                     }
                 }
-
             }
         }
     };
