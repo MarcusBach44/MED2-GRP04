@@ -178,7 +178,7 @@ public class TicTacToe extends AppCompatActivity {
             }
         }
 
-        // Diagonal (Top Left to Right)
+        // Diagonal (Top Left to Bottom Right)
         if (!board[0][0].value.equals("") &&
                 board[0][0].value.equals(board[1][1].value) &&
                 board[1][1].value.equals(board[2][2].value)) {
@@ -187,7 +187,7 @@ public class TicTacToe extends AppCompatActivity {
             return;
         }
 
-        // Diagonal (Top Right to Left)
+        // Diagonal (Top Right to Bottom Left)
         if (!board[0][2].value.equals("") &&
                 board[0][2].value.equals(board[1][1].value) &&
                 board[1][1].value.equals(board[2][0].value)) {
